@@ -391,6 +391,10 @@ body{background:#efe2d0 !important}
 .sd .kpi .v small{font-size:19px;font-weight:700}
 .sd .kpi .s{font-size:12.5px;color:var(--muted)}
 .sd .good{color:#1e8a3c !important}.sd .bad{color:#c0392b !important}.sd .warn{color:#d9861a !important}
+.sd .ins{margin:0;padding:0 18px 0 0;line-height:1.9;font-size:14.5px;color:var(--ink)}
+.sd .ins li{margin:2px 0}.sd .ins li::marker{color:var(--brown2)}
+.sd .ins li.x{list-style:none;margin-top:8px;padding-top:8px;border-top:1px dashed #e7d5bf;font-size:13px;color:var(--muted)}
+.sd .gobtn{appearance:none;border:0;background:var(--brown2);color:#fff;font:inherit;font-weight:700;font-size:14px;padding:7px 16px;border-radius:999px;cursor:pointer}
 /* ---------- panels ---------- */
 .sd .row3{display:grid;grid-template-columns:1fr 1.35fr 1.1fr;gap:16px}
 .sd .row2{display:grid;grid-template-columns:1.6fr 1fr;gap:16px}
@@ -511,6 +515,7 @@ body{background:#efe2d0 !important}
     <nav class="nav" role="tablist" aria-label="أقسام الداشبورد">
       <button class="tab" role="tab" data-tab="overview" aria-selected="true"><svg viewBox="0 0 24 24"><path d="M12 3 2 12h3v8h5v-6h4v6h5v-8h3z"/></svg>الرئيسية</button>
       <button class="tab" role="tab" data-tab="reports" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M4 20h3V10H4zm6 0h3V4h-3zm6 0h3v-7h-3z"/></svg>التقارير</button>
+      <button class="tab" role="tab" data-tab="yoyp" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M3 20h18v2H3zM5 10h3v8H5zm5-4h3v12h-3zm5 6h3v6h-3zM16 3l4 4-1.4 1.4L17 6.8V9h-2V3z"/></svg>2025 و2026</button>
       <button class="tab" role="tab" data-tab="clients" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm-7 8c0-3 3-5 7-5s7 2 7 5v1H5zM5 11a3 3 0 1 0-3-3 3 3 0 0 0 3 3zm14 0a3 3 0 1 0-3-3 3 3 0 0 0 3 3z"/></svg>العملاء</button>
       <button class="tab" role="tab" data-tab="debt" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M3 6h18v12H3zm2 2v8h14V8zm7 1a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>المديونية</button>
       <button class="tab" role="tab" data-tab="branches" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M3 21V9l9-6 9 6v12h-6v-7H9v7z"/></svg>الفروع</button>
@@ -612,28 +617,7 @@ body{background:#efe2d0 !important}
 
       <!-- ================= REPORTS ================= -->
       <section class="page" id="reports" hidden>
-        <section class="panel" id="yoy">
-          <h2 class="ph">مقارنة 2025 و2026 <span class="seg" data-seg="yoy"><button type="button" data-k="21" aria-pressed="true">21</button><button type="button" data-k="18" aria-pressed="false">18</button></span></h2>
-          <div class="pb">
-            <p class="sub">من شيت "مبيعات 2025 و2026" · بالجرام · كل عيار لوحده</p>
-            <div data-k="21">
-              <p class="note" style="margin:0 0 8px;font-size:14px;color:var(--ink)" data-draw="yoy-tot-21">—</p>
-              <div class="legend"><span style="--sw:#cfae92">2025</span><span style="--sw:var(--g21)">2026</span></div>
-              <div class="chart" data-draw="yoy-chart-21" data-source="yoy"></div>
-            </div>
-            <div data-k="18" hidden>
-              <p class="note" style="margin:0 0 8px;font-size:14px;color:var(--ink)" data-draw="yoy-tot-18">—</p>
-              <div class="legend"><span style="--sw:#f1d2ad">2025</span><span style="--sw:var(--g18)">2026</span></div>
-              <div class="chart" data-draw="yoy-chart-18" data-source="yoy"></div>
-            </div>
-            <div class="tw" style="margin-top:12px">
-              <table data-source="yoy" data-row-key="month" id="yoy-table">
-                <thead><tr><th data-field="label">الشهر</th><th class="num" data-field="s21_a">عيار 21 · 2025</th><th class="num" data-field="s21_b">عيار 21 · 2026</th><th class="num" data-field="chg21">التغير</th><th class="num" data-field="s18_a">عيار 18 · 2025</th><th class="num" data-field="s18_b">عيار 18 · 2026</th><th class="num" data-field="chg18">التغير</th></tr></thead>
-                <tbody data-draw="yoy-body"></tbody>
-              </table>
-            </div>
-          </div>
-        </section>
+        <section class="panel"><div class="pb" style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap"><span><b>مقارنة 2025 و2026</b> · بقت ليها صفحة لوحدها فيها تحليل موسع</span><button type="button" class="gobtn" data-goto="yoyp">افتح التحليل ←</button></div></section>
         <div class="grid2">
           <section class="panel" id="rep-21">
             <h2 class="ph">عيار 21 — تفاصيل الفترة</h2>
@@ -676,6 +660,71 @@ body{background:#efe2d0 !important}
             <div class="grid2">
               <div><h3>عيار 21</h3><div class="hbars" data-draw="weekday-21" data-source="weekday_avg"></div></div>
               <div><h3>عيار 18</h3><div class="hbars" data-draw="weekday-18" data-source="weekday_avg"></div></div>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- ================= 2025 vs 2026 ================= -->
+      <section class="page" id="yoyp" hidden>
+        <section class="panel" id="ya-head">
+          <h2 class="ph">تحليل 2025 و2026 <span class="seg yk" data-seg="yk"><button type="button" data-k="21" aria-pressed="true">21</button><button type="button" data-k="18" aria-pressed="false">18</button></span></h2>
+          <div class="pb" style="flex:none;padding-block:10px"><p class="sub" style="margin:0" data-draw="ya-sub">—</p></div>
+        </section>
+        <div class="kpis">
+          <div class="kpi"><div class="ico" data-draw="ya-ico1"><svg viewBox="0 0 24 24"><path d="M7 2h2v2h6V2h2v2h3v18H4V4h3zm-1 7v11h12V9z"/></svg></div>
+            <div><div class="l" data-draw="ya-l-a">إجمالي 2025</div><div class="v"><span data-draw="ya-k-a">—</span></div><div class="s">جم · متوسط الشهر <span data-draw="ya-avg-a">—</span></div></div></div>
+          <div class="kpi"><div class="ico caramel" data-draw="ya-ico2"><svg viewBox="0 0 24 24"><path d="M7 2h2v2h6V2h2v2h3v18H4V4h3zm-1 7v11h12V9zm2 2h8v2H8z"/></svg></div>
+            <div><div class="l" data-draw="ya-l-b">إجمالي 2026</div><div class="v"><span data-draw="ya-k-b">—</span><small data-draw="ya-k-chg">—</small></div><div class="s">جم · متوسط الشهر <span data-draw="ya-avg-b">—</span></div></div></div>
+          <div class="kpi"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 17h4v4H3zm7-6h4v10h-4zm7-8h4v18h-4z"/></svg></div>
+            <div><div class="l">الفرق</div><div class="v"><span data-draw="ya-k-diff">—</span></div><div class="s">جم · 2026 ناقص 2025</div></div></div>
+          <div class="kpi"><div class="ico orange"><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></div>
+            <div><div class="l">شهور زادت</div><div class="v"><span data-draw="ya-k-up">—</span></div><div class="s" data-draw="ya-k-up-s">—</div></div></div>
+        </div>
+        <section class="panel">
+          <h2 class="ph">أهم الملاحظات</h2>
+          <div class="pb"><ul class="ins" data-draw="ya-insights"></ul></div>
+        </section>
+        <div class="grid2">
+          <section class="panel">
+            <h2 class="ph">الفرق كل شهر</h2>
+            <div class="pb"><p class="sub">2026 ناقص 2025 بالجرام · أخضر = زيادة · أحمر = نقص</p><div class="chart" data-draw="ya-diff"></div></div>
+          </section>
+          <section class="panel">
+            <h2 class="ph">التراكمي من أول السنة</h2>
+            <div class="pb"><div class="legend" data-draw="ya-cum-leg"></div><div class="chart" data-draw="ya-cum"></div></div>
+          </section>
+        </div>
+        <div class="grid2">
+          <section class="panel">
+            <h2 class="ph">المقارنة بالربع</h2>
+            <div class="pb"><div class="tw"><table><thead><tr><th>الفترة</th><th class="num">2025</th><th class="num">2026</th><th class="num">الفرق</th><th class="num">التغير</th></tr></thead><tbody data-draw="ya-q"></tbody></table></div>
+            <p class="note" data-draw="ya-q-note"></p></div>
+          </section>
+          <section class="panel">
+            <h2 class="ph">ترتيب الشهور حسب الفرق</h2>
+            <div class="pb"><div class="tw"><table><thead><tr><th>الشهر</th><th class="num">2025</th><th class="num">2026</th><th class="num">الفرق</th><th class="num">التغير</th></tr></thead><tbody data-draw="ya-rank"></tbody></table></div></div>
+          </section>
+        </div>
+        <section class="panel" id="yoy">
+          <h2 class="ph">مقارنة 2025 و2026 <span class="seg" data-seg="yoy"><button type="button" data-k="21" aria-pressed="true">21</button><button type="button" data-k="18" aria-pressed="false">18</button></span></h2>
+          <div class="pb">
+            <p class="sub">من شيت "مبيعات 2025 و2026" · بالجرام · كل عيار لوحده</p>
+            <div data-k="21">
+              <p class="note" style="margin:0 0 8px;font-size:14px;color:var(--ink)" data-draw="yoy-tot-21">—</p>
+              <div class="legend"><span style="--sw:#cfae92">2025</span><span style="--sw:var(--g21)">2026</span></div>
+              <div class="chart" data-draw="yoy-chart-21" data-source="yoy"></div>
+            </div>
+            <div data-k="18" hidden>
+              <p class="note" style="margin:0 0 8px;font-size:14px;color:var(--ink)" data-draw="yoy-tot-18">—</p>
+              <div class="legend"><span style="--sw:#f1d2ad">2025</span><span style="--sw:var(--g18)">2026</span></div>
+              <div class="chart" data-draw="yoy-chart-18" data-source="yoy"></div>
+            </div>
+            <div class="tw" style="margin-top:12px">
+              <table data-source="yoy" data-row-key="month" id="yoy-table">
+                <thead><tr><th data-field="label">الشهر</th><th class="num" data-field="s21_a">عيار 21 · 2025</th><th class="num" data-field="s21_b">عيار 21 · 2026</th><th class="num" data-field="chg21">التغير</th><th class="num" data-field="s18_a">عيار 18 · 2025</th><th class="num" data-field="s18_b">عيار 18 · 2026</th><th class="num" data-field="chg18">التغير</th></tr></thead>
+                <tbody data-draw="yoy-body"></tbody>
+              </table>
             </div>
           </div>
         </section>
@@ -997,7 +1046,7 @@ dash.calc('over_list', {
   };
   document.querySelectorAll('.sd .tab').forEach((t) => t.addEventListener('click', () => show(t.dataset.tab)));
   const h = (location.hash || '').slice(1);
-  if (['overview', 'clients', 'debt', 'branches'].includes(h)) show(h);
+  if (['overview', 'reports', 'yoyp', 'clients', 'debt', 'branches'].includes(h)) show(h);
 
   const range = (preset) => {
     const ms = SD.months().map((r) => r.month); if (!ms.length) return null;
@@ -1445,11 +1494,141 @@ dash.draw('yoy-body', (tb) => {
     ['21', '18'].forEach((k) => {
       window.sdTd(tr, r['s' + k + '_a'] === null ? '—' : SD.f0(r['s' + k + '_a']), 'num');
       window.sdTd(tr, r['s' + k + '_b'] === null ? '—' : SD.f0(r['s' + k + '_b']), 'num');
-      const c = r['chg' + k]; window.sdTd(tr, c === null ? '—' : (c >= 0 ? '+' : '−') + SD.pct(Math.abs(c)), 'num ' + (c === null ? '' : c >= 0 ? 'good' : 'bad'));
+      const c = r['chg' + k]; window.sdTd(tr, c === null ? '—' : '\u200E' + (c >= 0 ? '+' : '−') + SD.pct(Math.abs(c)), 'num ' + (c === null ? '' : c >= 0 ? 'good' : 'bad'));
     });
     return tr;
   }));
 });
+
+// ---------- 2025 vs 2026: extended analysis page ----------
+(function () {
+  let K = '21';
+  const ms = () => SD.rows('yoy').filter((r) => r.month !== 'total' && r['s' + K + '_a'] !== null && r['s' + K + '_b'] !== null);
+  const A = (r) => +r['s' + K + '_a'] || 0, B = (r) => +r['s' + K + '_b'] || 0;
+  const sum = (a, f) => a.reduce((t, r) => t + f(r), 0);
+  const chg = (a, b) => (a ? (b - a) / a : null);
+  const sg = (v) => (v >= 0 ? '+' : '−');
+  const fd = (v) => '\u200E' + sg(v) + SD.f0(Math.abs(v));
+  const fp = (v) => (v === null ? '—' : '\u200E' + sg(v) + SD.pct(Math.abs(v)));
+  const yrs = () => { const r = SD.rows('yoy')[0]; return r ? [r.ya, r.yb] : [2025, 2026]; };
+  const span = (a) => (a.length ? a[0].label.trim() + '–' + a[a.length - 1].label.trim() : '');
+  const colA = () => (K === '21' ? '#cfae92' : '#f1d2ad'), colB = () => (K === '21' ? 'var(--g21)' : 'var(--g18)');
+  const NAMES = ['ya-sub', 'ya-l-a', 'ya-l-b', 'ya-k-a', 'ya-k-b', 'ya-k-chg', 'ya-avg-a', 'ya-avg-b', 'ya-k-diff', 'ya-k-up', 'ya-k-up-s', 'ya-insights', 'ya-diff', 'ya-cum-leg', 'ya-cum', 'ya-q', 'ya-q-note', 'ya-rank'];
+  const redraw = () => NAMES.forEach((n) => dash.draw(n));
+  document.querySelectorAll('.sd .seg.yk button').forEach((b) => b.addEventListener('click', () => { K = b.dataset.k; redraw(); }));
+  document.querySelectorAll('.sd .tab[data-tab="yoyp"]').forEach((t) => t.addEventListener('click', () => setTimeout(() => { redraw(); dash.draw('yoy-chart-21'); dash.draw('yoy-chart-18'); }, 0)));
+
+  dash.draw('ya-sub', (el) => { const a = ms(); el.textContent = 'عيار ' + K + ' فقط · ' + span(a) + ' · من شيت "مبيعات 2025 و2026" · بالجرام · بدّل بين 21 و18 من الزرار'; });
+  dash.draw('ya-l-a', (el) => { el.textContent = 'إجمالي ' + yrs()[0]; });
+  dash.draw('ya-l-b', (el) => { el.textContent = 'إجمالي ' + yrs()[1]; });
+  dash.draw('ya-k-a', (el) => { el.textContent = SD.f0(sum(ms(), A)); });
+  dash.draw('ya-k-b', (el) => { el.textContent = SD.f0(sum(ms(), B)); });
+  dash.draw('ya-avg-a', (el) => { const a = ms(); el.textContent = a.length ? SD.f0(sum(a, A) / a.length) : '—'; });
+  dash.draw('ya-avg-b', (el) => { const a = ms(); el.textContent = a.length ? SD.f0(sum(a, B) / a.length) : '—'; });
+  dash.draw('ya-k-chg', (el) => { const a = ms(); const c = chg(sum(a, A), sum(a, B)); el.textContent = c === null ? '' : '(' + fp(c) + ')'; SD.tone(el, c === null ? null : c >= 0 ? 'good' : 'bad'); });
+  dash.draw('ya-k-diff', (el) => { const a = ms(); const d = sum(a, B) - sum(a, A); el.textContent = fd(d); SD.tone(el, d >= 0 ? 'good' : 'bad'); });
+  dash.draw('ya-k-up', (el) => { const a = ms(); el.textContent = a.filter((r) => B(r) > A(r)).length + ' من ' + a.length; });
+  dash.draw('ya-k-up-s', (el) => { const a = ms(); el.textContent = 'وقلّت في ' + a.filter((r) => B(r) < A(r)).length + ' شهور'; });
+
+  dash.draw('ya-insights', (ul) => {
+    const a = ms(); ul.replaceChildren(); if (!a.length) { ul.textContent = 'مفيش بيانات مقارنة'; return; }
+    const [ya, yb] = yrs(); const add = (txt, cls) => { const li = document.createElement('li'); txt.split(/\u200E([+−][\d,.%]+)/).forEach((t, i) => { if (i % 2) { const sp = document.createElement('span'); sp.dir = 'ltr'; sp.style.unicodeBidi = 'isolate'; sp.textContent = t; li.append(sp); } else if (t) li.append(document.createTextNode(t)); }); if (cls) li.className = cls; ul.append(li); };
+    const ta = sum(a, A), tb = sum(a, B), c = chg(ta, tb);
+    add('إجمالي ' + span(a) + ' ' + yb + ' = ' + SD.f0(tb) + ' جم مقابل ' + SD.f0(ta) + ' جم في ' + ya + ' — ' + (tb >= ta ? 'زيادة ' : 'نقص ') + SD.f0(Math.abs(tb - ta)) + ' جم (' + fp(c) + ').');
+    const d = a.map((r) => ({ r, d: B(r) - A(r), c: chg(A(r), B(r)) }));
+    const up = d.filter((x) => x.d > 0), dn = d.filter((x) => x.d < 0);
+    add('المبيعات زادت في ' + up.length + ' شهور (' + (up.map((x) => x.r.label.trim()).join('، ') || '—') + ') وقلّت في ' + dn.length + ' شهور (' + (dn.map((x) => x.r.label.trim()).join('، ') || '—') + ').');
+    const best = d.slice().sort((x, y) => y.d - x.d)[0], worst = d.slice().sort((x, y) => x.d - y.d)[0];
+    if (best && best.d > 0) add('أكبر زيادة كانت في ' + best.r.label.trim() + ': ' + fd(best.d) + ' جم (' + fp(best.c) + ').');
+    if (worst && worst.d < 0) add('أكبر نقص كان في ' + worst.r.label.trim() + ': ' + fd(worst.d) + ' جم (' + fp(worst.c) + ').');
+    const h1 = a.filter((r) => +r.month <= 6), h2 = a.filter((r) => +r.month > 6);
+    if (h1.length && h2.length) {
+      const c1 = chg(sum(h1, A), sum(h1, B)), c2 = chg(sum(h2, A), sum(h2, B));
+      add('من ' + span(h1) + ': ' + fp(c1) + ' · ومن ' + span(h2) + ': ' + fp(c2) + ' — ' + (c2 < c1 - 0.03 ? 'يعني الأداء ضعف في الشهور الأخيرة مقارنة بأول السنة.' : c2 > c1 + 0.03 ? 'يعني الأداء اتحسن في الشهور الأخيرة.' : 'يعني الأداء ماشي بنفس المستوى تقريباً.'));
+    }
+    const l3 = a.slice(-3);
+    if (l3.length === 3) { const c3 = chg(sum(l3, A), sum(l3, B)); add('آخر 3 شهور (' + span(l3) + '): ' + SD.f0(sum(l3, B)) + ' جم مقابل ' + SD.f0(sum(l3, A)) + ' جم (' + fp(c3) + ').'); }
+    const pa = a.slice().sort((x, y) => A(y) - A(x))[0], pb = a.slice().sort((x, y) => B(y) - B(x))[0];
+    const la = a.slice().sort((x, y) => A(x) - A(y))[0], lb = a.slice().sort((x, y) => B(x) - B(y))[0];
+    add('أعلى شهر: ' + ya + ' كان ' + pa.label.trim() + ' (' + SD.f0(A(pa)) + ' جم) · ' + yb + ' كان ' + pb.label.trim() + ' (' + SD.f0(B(pb)) + ' جم).');
+    add('أقل شهر: ' + ya + ' كان ' + la.label.trim() + ' (' + SD.f0(A(la)) + ' جم) · ' + yb + ' كان ' + lb.label.trim() + ' (' + SD.f0(B(lb)) + ' جم).');
+    const cv = (f) => { const m = sum(a, f) / a.length; return Math.sqrt(sum(a, (r) => (f(r) - m) ** 2) / a.length) / m; };
+    const va = cv(A), vb = cv(B);
+    add('ثبات المبيعات: الفرق بين الشهور في ' + yb + ' ' + (vb > va * 1.15 ? 'أكبر من ' + ya + ' (المبيعات متذبذبة أكتر).' : vb < va * 0.87 ? 'أقل من ' + ya + ' (المبيعات أثبت).' : 'قريب من ' + ya + '.'));
+    const nov = SD.months().find((r) => r.month === yb + '-11'); const avgA = ta / a.length;
+    if (nov && nov['sales' + K] !== undefined) {
+      const v = +nov['sales' + K] || 0;
+      add('نوفمبر ' + yb + ' لحد آخر يوم مسجل: ' + SD.f0(v) + ' جم' + (v < avgA ? ' — محتاج ' + SD.f0(avgA - v) + ' جم كمان علشان يوصل لمتوسط شهر ' + ya + ' (' + SD.f0(avgA) + ' جم).' : ' — عدّى متوسط شهر ' + ya + ' (' + SD.f0(avgA) + ' جم).'));
+    }
+    const t = SD.rows('yoy').find((r) => r.month === 'total');
+    if (t) add('للمقارنة بس (كل عيار لوحده): عيار 21 ' + fp(t.chg21) + ' · عيار 18 ' + fp(t.chg18) + '.', 'x');
+  });
+
+  const tipOn = (el, tip, ev, lines) => {
+    const [px, py] = d3.pointer(ev, el); tip.style('display', null).html('');
+    lines.forEach(([t, b, col]) => { const dv = tip.append('div').text(t); if (b) dv.style('font-weight', '700'); if (col) dv.style('color', col); });
+    const tw = tip.node().offsetWidth; tip.style('left', Math.max(0, Math.min(el.clientWidth - tw, px - tw / 2)) + 'px').style('top', Math.max(0, py - 80) + 'px');
+  };
+
+  dash.draw('ya-diff', (el) => {
+    const data = ms().map((r) => ({ r, d: B(r) - A(r) })); el.replaceChildren(); if (!data.length) { el.textContent = '—'; return; }
+    const W = el.clientWidth || 600, H = 260, mg = { t: 22, r: 8, b: 28, l: 8 };
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'الفرق الشهري لعيار ' + K + ' بين 2026 و2025');
+    const ext = d3.max(data, (x) => Math.abs(x.d)) * 1.15 || 1;
+    const y = d3.scaleLinear().domain([-ext, ext]).nice().range([H - mg.b, mg.t]);
+    const g0 = svg.append('g').call(d3.axisLeft(y).ticks(5, '~s')); let lw = 0; g0.selectAll('text').each(function () { lw = Math.max(lw, this.getComputedTextLength()); }); g0.remove(); mg.l = lw + 12;
+    const x = d3.scaleBand().domain(data.map((d) => d.r.month)).range([mg.l, W - mg.r]).padding(0.25);
+    svg.append('g').attr('transform', `translate(${mg.l},0)`).call(d3.axisLeft(y).ticks(5, '~s').tickSize(-(W - mg.l - mg.r))).call((g) => { g.select('.domain').remove(); g.selectAll('line').style('stroke', 'var(--cds-chart-grid)'); });
+    svg.append('line').attr('x1', mg.l).attr('x2', W - mg.r).attr('y1', y(0)).attr('y2', y(0)).style('stroke', '#8a6a50');
+    svg.append('g').attr('transform', `translate(0,${H - mg.b})`).call(d3.axisBottom(x).tickFormat((m, i) => (i % Math.ceil(data.length / Math.max(1, Math.floor((W - mg.l) / 44))) ? '' : data[i].r.label.trim().slice(0, 4))).tickSize(0).tickPadding(8)).call((g) => g.select('.domain').remove());
+    const g = svg.append('g').selectAll('g').data(data).join('g');
+    g.append('rect').attr('x', (d) => x(d.r.month)).attr('width', x.bandwidth()).attr('y', (d) => y(Math.max(0, d.d))).attr('height', (d) => Math.abs(y(d.d) - y(0))).attr('rx', 2).style('fill', (d) => (d.d >= 0 ? '#2e9e4f' : '#c84a3a'));
+    if (x.bandwidth() > 26) g.append('text').attr('x', (d) => x(d.r.month) + x.bandwidth() / 2).attr('y', (d) => (d.d >= 0 ? y(d.d) - 5 : y(d.d) + 13)).attr('text-anchor', 'middle').style('font-size', '11px').text((d) => sg(d.d) + d3.format('.2~s')(Math.abs(d.d)));
+    const tip = d3.select(el).append('div').attr('class', 'tip').style('display', 'none');
+    g.append('rect').attr('x', (d) => x(d.r.month)).attr('width', x.bandwidth()).attr('y', mg.t).attr('height', H - mg.b - mg.t).style('fill', 'transparent')
+      .on('pointerenter pointermove', (ev, d) => tipOn(el, tip, ev, [[d.r.label.trim() + ' · عيار ' + K, 1], [d.r.ya + ': ' + SD.f0(A(d.r)) + ' جم'], [d.r.yb + ': ' + SD.f0(B(d.r)) + ' جم'], ['الفرق: ' + fd(d.d) + ' جم (' + fp(chg(A(d.r), B(d.r))) + ')', 1, d.d >= 0 ? '#1e8a3c' : '#c0392b']]))
+      .on('pointerleave', () => tip.style('display', 'none'));
+  });
+
+  dash.draw('ya-cum-leg', (el) => { const [ya, yb] = yrs(); el.innerHTML = ''; [[ya, colA()], [yb, colB()]].forEach(([t, c]) => { const s = document.createElement('span'); s.style.setProperty('--sw', c); s.textContent = t; el.append(s); }); });
+  dash.draw('ya-cum', (el) => {
+    const a = ms(); el.replaceChildren(); if (!a.length) { el.textContent = '—'; return; }
+    let ca = 0, cb = 0; const data = a.map((r) => ({ r, a: (ca += A(r)), b: (cb += B(r)) }));
+    const W = el.clientWidth || 600, H = 260, mg = { t: 14, r: 14, b: 28, l: 8 };
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'المبيعات التراكمية لعيار ' + K);
+    const y = d3.scaleLinear().domain([0, d3.max(data, (d) => Math.max(d.a, d.b)) * 1.06]).nice().range([H - mg.b, mg.t]);
+    const g0 = svg.append('g').call(d3.axisLeft(y).ticks(5, '~s')); let lw = 0; g0.selectAll('text').each(function () { lw = Math.max(lw, this.getComputedTextLength()); }); g0.remove(); mg.l = lw + 12;
+    const x = d3.scalePoint().domain(data.map((d) => d.r.month)).range([mg.l + 10, W - mg.r - 10]);
+    svg.append('g').attr('transform', `translate(${mg.l},0)`).call(d3.axisLeft(y).ticks(5, '~s').tickSize(-(W - mg.l - mg.r))).call((g) => { g.select('.domain').remove(); g.selectAll('line').style('stroke', 'var(--cds-chart-grid)'); });
+    svg.append('g').attr('transform', `translate(0,${H - mg.b})`).call(d3.axisBottom(x).tickFormat((m, i) => (i % Math.ceil(data.length / Math.max(1, Math.floor((W - mg.l) / 44))) ? '' : data[i].r.label.trim().slice(0, 4))).tickSize(0).tickPadding(8)).call((g) => g.select('.domain').remove());
+    [['a', colA(), '5 4'], ['b', colB(), null]].forEach(([s, c, dsh]) => {
+      svg.append('path').datum(data).attr('d', d3.line().x((d) => x(d.r.month)).y((d) => y(d[s]))).style('fill', 'none').style('stroke', c).style('stroke-width', 3).attr('stroke-dasharray', dsh);
+      svg.append('g').selectAll('circle').data(data).join('circle').attr('cx', (d) => x(d.r.month)).attr('cy', (d) => y(d[s])).attr('r', 3.5).style('fill', c);
+    });
+    const tip = d3.select(el).append('div').attr('class', 'tip').style('display', 'none'); const step = x.step();
+    svg.append('g').selectAll('rect').data(data).join('rect').attr('x', (d) => x(d.r.month) - step / 2).attr('width', step).attr('y', mg.t).attr('height', H - mg.b - mg.t).style('fill', 'transparent')
+      .on('pointerenter pointermove', (ev, d) => tipOn(el, tip, ev, [['لحد ' + d.r.label.trim() + ' · عيار ' + K, 1], [d.r.ya + ': ' + SD.f0(d.a) + ' جم'], [d.r.yb + ': ' + SD.f0(d.b) + ' جم'], ['الفرق: ' + fd(d.b - d.a) + ' جم', 1, d.b >= d.a ? '#1e8a3c' : '#c0392b']]))
+      .on('pointerleave', () => tip.style('display', 'none'));
+  });
+
+  const row = (tb, cells, bold) => { const tr = document.createElement('tr'); if (bold) tr.style.fontWeight = '700'; cells.forEach(([t, c]) => window.sdTd(tr, t, c)); tb.append(tr); };
+  const QN = ['الربع الأول', 'الربع التاني', 'الربع التالت', 'الربع الرابع'];
+  dash.draw('ya-q', (tb) => {
+    const a = ms(); tb.replaceChildren(); const q = d3.groups(a, (r) => Math.ceil(+r.month / 3));
+    q.forEach(([n, rs]) => { const sa = sum(rs, A), sb = sum(rs, B), c = chg(sa, sb); row(tb, [[QN[n - 1] + (rs.length < 3 ? ' (' + rs.map((r) => r.label.trim()).join('، ') + ' بس)' : ' (' + span(rs) + ')')], [SD.f0(sa), 'num'], [SD.f0(sb), 'num'], [fd(sb - sa), 'num ' + (sb >= sa ? 'good' : 'bad')], [fp(c), 'num ' + (c >= 0 ? 'good' : 'bad')]]); });
+    const sa = sum(a, A), sb = sum(a, B); row(tb, [['الإجمالي'], [SD.f0(sa), 'num'], [SD.f0(sb), 'num'], [fd(sb - sa), 'num ' + (sb >= sa ? 'good' : 'bad')], [fp(chg(sa, sb)), 'num ' + (sb >= sa ? 'good' : 'bad')]], true);
+  });
+  dash.draw('ya-q-note', (el) => {
+    const q = d3.groups(ms(), (r) => Math.ceil(+r.month / 3)).filter(([, rs]) => rs.length === 3).map(([n, rs]) => ({ n, c: chg(sum(rs, A), sum(rs, B)) }));
+    if (!q.length) { el.textContent = ''; return; }
+    const b = q.slice().sort((x, y) => y.c - x.c)[0], w = q.slice().sort((x, y) => x.c - y.c)[0];
+    el.textContent = 'أحسن ربع مقارنة بالسنة اللي فاتت: ' + QN[b.n - 1] + ' (' + fp(b.c) + ') · أضعف ربع: ' + QN[w.n - 1] + ' (' + fp(w.c) + ').';
+  });
+  dash.draw('ya-rank', (tb) => {
+    tb.replaceChildren();
+    ms().map((r) => ({ r, d: B(r) - A(r) })).sort((x, y) => y.d - x.d).forEach(({ r, d }) => { const c = chg(A(r), B(r)); row(tb, [[r.label.trim()], [SD.f0(A(r)), 'num'], [SD.f0(B(r)), 'num'], [fd(d), 'num ' + (d >= 0 ? 'good' : 'bad')], [fp(c), 'num ' + (c >= 0 ? 'good' : 'bad')]]); });
+  });
+})();
 </script>
 
 <p class="foot">البيانات من ملف SALSE · آخر يوم مبيعات: <span class="data-date">—</span></p>
