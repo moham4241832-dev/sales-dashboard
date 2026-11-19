@@ -423,13 +423,62 @@ body{background:#efe2d0 !important}
 .sd details summary{cursor:pointer;color:var(--muted);font-size:12.5px}
 @media (max-width:900px){.sd{flex-direction:column}.sd .side{width:auto;flex:none;height:auto;min-height:0;position:static}.sd .nav{flex-direction:row;flex-wrap:wrap;padding:8px}.sd .swoosh,.sd .brand svg{display:none}.sd .brand{padding:10px}.sd .tab{padding:8px 12px;font-size:14px}}
 @media print{.sd .page[hidden]{display:flex!important;break-before:page}.sd .side{display:none}}
+/* ---------- responsive polish ---------- */
+.foot{display:none}
+.sd .kpi .v{font-size:clamp(26px,2.4vw,40px)}
+.sd .ico{width:clamp(54px,4.6vw,76px);height:clamp(54px,4.6vw,76px);flex:0 0 clamp(54px,4.6vw,76px)}
+.sd .ico svg{width:52%;height:52%}
+.sd .sumrow{grid-template-columns:repeat(2,1fr);gap:1px;background:#e2cdb3;border-radius:12px;overflow:hidden}
+.sd .sumrow>div,.sd .sumrow>div:last-child{border:0;background:var(--card);padding:16px 8px}
+.sd .sumrow .n{font-size:clamp(22px,2.2vw,30px)}
+.sd .sumrow svg{width:38px;height:38px}
+@media (max-width:1100px){.sd .row3>.panel,.sd .row2>.panel{min-width:0}.sd .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:900px){
+  .sd .side{flex-direction:row;align-items:center;flex-wrap:wrap}
+  .sd .brand{border:0;padding:10px 14px;flex:1 1 100%;text-align:center}
+  .sd .brand h1{font-size:17px;margin:0}
+  .sd .brand h1 br{display:none}
+  .sd .nav{flex:1 1 100%;flex-wrap:wrap;justify-content:center;padding:0 8px 10px;gap:6px}
+  .sd .tab{flex:0 0 auto;padding:7px 11px;font-size:13.5px;gap:6px}
+  .sd .tab svg{width:18px;height:18px;flex-basis:18px}
+}
+@media (max-width:700px){
+  .sd .topbar{padding:14px 14px 16px;gap:12px}
+  .sd .ttl{order:-1;flex:1 1 100%;min-width:0}
+  .sd .ttl h2{font-size:22px}
+  .sd .ttl p{font-size:14px}
+  .sd .today{border:0;padding:0}
+  .sd .today svg{width:32px;height:32px}
+  .sd .today b{font-size:16px}
+  .sd .flt{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;width:100%}
+  .sd .flt select{min-width:0;width:100%;font-size:13px;padding:8px 8px 8px 24px;background-position:left 8px center}
+  .sd .content{padding:12px}
+  .sd .page{gap:12px}
+  .sd .kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .sd .kpi{flex-direction:column;align-items:flex-start;gap:8px;padding:12px}
+  .sd .ico{width:42px;height:42px;flex:0 0 42px}
+  .sd .kpi .l{font-size:13px}
+  .sd .kpi .v{font-size:24px;gap:4px}
+  .sd .kpi .v small{font-size:13px}
+  .sd .kpi .s{font-size:11.5px}
+  .sd .ph{font-size:17px;padding:10px 14px}
+  .sd .pb{padding:12px}
+  .sd .grid2{grid-template-columns:minmax(0,1fr)}
+  .sd .donut svg{width:170px;height:170px}
+  .sd .hrow{grid-template-columns:minmax(80px,38%) 1fr auto;font-size:13px;gap:8px}
+  .sd table{font-size:13px}
+  .sd th,.sd td{padding:7px 8px}
+  .sd td.name{min-width:0}
+  .sd #top-table th:nth-child(2),.sd #top-table td:nth-child(2),.sd #top-table th:nth-child(4),.sd #top-table td:nth-child(4){display:none}
+  .sd .sumrow .n{font-size:24px}
+}
 </style>
 
 <div class="sd" lang="ar" data-read>
   <aside class="side">
     <div class="brand">
       <svg viewBox="0 0 64 64" aria-hidden="true"><path fill="#fff" d="M8 44h20l-3-10H11zM36 44h20l-3-10H39zM22 30h20l-3-10H25z"/><path fill="#f0c99e" d="M6 46h52v4H6z"/></svg>
-      <h1>مبيعات<br>الإسكندرية</h1>
+      <h1>مبيعات<br> الإسكندرية</h1>
     </div>
     <nav class="nav" role="tablist" aria-label="أقسام الداشبورد">
       <button class="tab" role="tab" data-tab="overview" aria-selected="true"><svg viewBox="0 0 24 24"><path d="M12 3 2 12h3v8h5v-6h4v6h5v-8h3z"/></svg>الرئيسية</button>
@@ -472,11 +521,11 @@ body{background:#efe2d0 !important}
           </div>
           <div class="kpi" id="card-gold">
             <div class="ico green"><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></div>
-            <div><div class="l">دهب عند العملاء (عيار 21)</div><div class="v"><span data-draw="d-gold" data-source="debt_summary" data-field="gold21" data-row="0">—</span></div><div class="s">جم · عند <span data-draw="d-cnt" data-source="debt_summary" data-field="debtors" data-row="0">—</span> عميل</div></div>
+            <div><div class="l">دهب عند العملاء</div><div class="v"><span data-draw="d-gold" data-source="debt_summary" data-field="gold21" data-row="0">—</span></div><div class="s">جم عيار 21 · عند <span data-draw="d-cnt" data-source="debt_summary" data-field="debtors" data-row="0">—</span> عميل</div></div>
           </div>
           <div class="kpi" id="card-over">
             <div class="ico orange"><svg viewBox="0 0 24 24"><path d="M6 2h12v5l-4 5 4 5v5H6v-5l4-5-4-5zm2 2v2.3L12 11l4-4.7V4zm4 9-4 4.7V20h8v-2.3z"/></svg></div>
-            <div><div class="l">عملاء فوق الحد</div><div class="v"><span data-draw="d-over" data-source="debt_summary" data-field="over" data-row="0">—</span><small class="warn" data-draw="d-share-p">—</small></div><div class="s">عليهم <span data-draw="d-over-g" data-source="debt_summary" data-field="over_gold21" data-row="0">—</span> جم</div></div>
+            <div><div class="l">عملاء فوق الحد</div><div class="v"><span data-draw="d-over" data-source="debt_summary" data-field="over" data-row="0">—</span><small class="warn" data-draw="d-share-p">—</small></div><div class="s">من المدينين · عليهم <span data-draw="d-over-g" data-source="debt_summary" data-field="over_gold21" data-row="0">—</span> جم</div></div>
           </div>
         </div>
 
@@ -1203,7 +1252,7 @@ dash.draw('last-date', (el) => {
   if (v === null || v === undefined) { SD.unmark(el); el.textContent = ''; return; }
   SD.mark(el, 'period', 'pct' + k); el.textContent = '(' + SD.pct(v) + ')'; SD.tone(el, v >= 1 ? 'good' : v >= 0.75 ? 'warn' : 'bad');
 }));
-dash.draw('d-share-p', (el) => { const r = SD.rows('debt_summary')[0]; el.textContent = r && r.debtors ? '(' + SD.pct(r.over / r.debtors) + ' من المدينين)' : ''; });
+dash.draw('d-share-p', (el) => { const r = SD.rows('debt_summary')[0]; el.textContent = r && r.debtors ? '(' + SD.pct(r.over / r.debtors) + ')' : ''; });
 
 const SD_CH = {
   '21': [['bag_islam', 'شنطة إسلام منصور', '#3bb54a'], ['bag_abueissa', 'شنطة أبو عيسى', '#2f8be6'], ['branch21', 'بيع الفرع', '#f39a1e']],
