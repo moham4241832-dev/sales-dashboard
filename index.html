@@ -454,7 +454,37 @@ body{background:#efe2d0 !important}
 .sd .row-top{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:8px}
 .sd details summary{cursor:pointer;color:var(--muted);font-size:12.5px}
 @media (max-width:900px){.sd{flex-direction:column}.sd .side{width:auto;flex:none;height:auto;min-height:0;position:static}.sd .nav{flex-direction:row;flex-wrap:wrap;padding:8px}.sd .swoosh,.sd .brand svg{display:none}.sd .brand{padding:10px}.sd .tab{padding:8px 12px;font-size:14px}}
-@media print{.sd .page[hidden]{display:flex!important;break-before:page}.sd .side{display:none}}
+.sd .prt{appearance:none;border:1px solid rgba(255,255,255,.6);background:rgba(255,255,255,.12);color:#fff;font:inherit;font-size:14px;font-weight:700;padding:7px 14px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.sd .prt svg{width:18px;height:18px;fill:#fff}
+.sd .prt:hover{background:rgba(255,255,255,.25)}
+.sd .pprt{appearance:none;border:0;background:rgba(255,255,255,.15);width:30px;height:30px;flex:0 0 30px;border-radius:50%;display:grid;place-items:center;cursor:pointer;margin-inline-start:6px}
+.sd .pprt svg{width:16px;height:16px;fill:#fff}.sd .pprt:hover{background:rgba(255,255,255,.3)}
+.sd .ph .phr{display:flex;align-items:center;gap:6px}
+#printhead{display:none}
+.sd .ttl h2{font-size:clamp(20px,1.8vw,30px);white-space:nowrap}.sd .ttl{min-width:0}
+@page{size:A4 landscape;margin:8mm}
+@media print{
+  html,body{background:#fff!important}
+  .sd,.sd *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .sd{display:block;background:#fff;min-height:0}
+  .sd .side,.sd .flt,.sd .prt,.sd .pprt,.sd .gobtn,.sd .more,#sync,#notes,.sd .tip,.sd .print-hide{display:none!important}
+  .sd .page[hidden]{display:none!important}
+  .sd .topbar{padding:8px 16px;gap:14px}
+  .sd .ttl h2{font-size:22px}.sd .ttl p{font-size:13px}
+  .sd .content{padding:8px 0 0}
+  #printhead{display:flex!important;flex-wrap:wrap;gap:6px 18px;align-items:baseline;border-bottom:2px solid #7a3a12;padding:4px 2px 8px;margin-bottom:10px;font-size:13px;color:#5b4635}
+  #printhead b{font-size:18px;color:#3a1a06}
+  .sd .page{gap:10px}
+  .sd .panel,.sd .kpi{box-shadow:none;break-inside:avoid}
+  .sd .panel:has(table){break-inside:auto}
+  .sd .tw{overflow:visible}
+  .sd thead{display:table-header-group}
+  .sd tr{break-inside:avoid}
+  .sd table{font-size:11px}.sd th,.sd td{padding:4px 6px}
+  .pr-panel .sd .row3,.pr-panel .sd .row2,.pr-panel .sd .grid2{display:block}
+  .pr-panel .sd .chart svg{max-height:125mm;width:auto;max-width:100%;margin:0 auto}
+  .pr-panel .sd .donut svg{max-height:70mm}
+}
 /* ---------- responsive polish ---------- */
 .foot{display:none}
 .sd .kpi .v{font-size:clamp(26px,2.4vw,40px)}
@@ -538,9 +568,11 @@ body{background:#efe2d0 !important}
         <label>من<select data-draw="f-from" aria-label="من شهر" data-source="monthly_sales"></select></label>
         <label>لحد<select data-draw="f-to" aria-label="لحد شهر" data-source="monthly_sales"></select></label>
       </div>
+      <button type="button" class="prt" id="print-page" title="اطبع الصفحة دي أو احفظها PDF"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h12v5H6zM4 8h16a2 2 0 0 1 2 2v7h-4v5H6v-5H2v-7a2 2 0 0 1 2-2zm4 9v3h8v-3zm10-6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg>طباعة / PDF</button>
     </header>
 
     <div class="content">
+      <div id="printhead"><b data-ph="t">—</b><span data-ph="p"></span><span data-ph="d"></span></div>
       <!-- ================= OVERVIEW ================= -->
       <section class="page" id="overview">
         <div class="kpis">
@@ -848,7 +880,7 @@ body{background:#efe2d0 !important}
 
       <details id="notes" style="margin-top:16px">
         <summary>ملاحظات عن الأرقام</summary>
-        <p class="note">كل المبيعات بالجرام، وعيار 21 وعيار 18 دايماً منفصلين. الهدف من شيت salsepov، وشهور مارس (21) وأبريل ومايو ويونيو مالهاش هدف في الملف، وهدف الشهر الحالي من جدول الأهداف اللي على جنب في نفس الشيت. التوقع لآخر الشهر = متوسط البيع في أيام الشغل اللي فاتت × أيام الشغل في الشهر كله (من الاتنين للجمعة). شيت SALE بيتقري بشهور السنة الحالية، وشيت "مبيعات 2025 و2026" بيتعرض في صفحة التقارير.</p>
+        <p class="note">كل المبيعات بالجرام، وعيار 21 وعيار 18 دايماً منفصلين. الهدف من شيت salsepov، وشهور مارس (21) وأبريل ومايو ويونيو مالهاش هدف في الملف، وهدف الشهر الحالي من جدول الأهداف اللي على جنب في نفس الشيت. التوقع لآخر الشهر = متوسط البيع في أيام الشغل اللي فاتت × أيام الشغل في الشهر كله (من الاتنين للجمعة). شيت SALE بيتقري بشهور السنة الحالية، وشيت "مبيعات 2025 و2026" بيتعرض في صفحة 2025 و2026. زرار "طباعة / PDF" فوق بيطبع الصفحة اللي فاتحها بس، وأيقونة الطابعة اللي في عنوان أي جزء بتطبع الجزء ده لوحده — ومن نافذة الطباعة اختار "Save as PDF" أو "حفظ كـ PDF".</p>
       </details>
     </div>
   </div>
@@ -1627,6 +1659,43 @@ dash.draw('yoy-body', (tb) => {
   dash.draw('ya-rank', (tb) => {
     tb.replaceChildren();
     ms().map((r) => ({ r, d: B(r) - A(r) })).sort((x, y) => y.d - x.d).forEach(({ r, d }) => { const c = chg(A(r), B(r)); row(tb, [[r.label.trim()], [SD.f0(A(r)), 'num'], [SD.f0(B(r)), 'num'], [fd(d), 'num ' + (d >= 0 ? 'good' : 'bad')], [fp(c), 'num ' + (c >= 0 ? 'good' : 'bad')]]); });
+  });
+})();
+
+// ---------- print / PDF per report ----------
+(function () {
+  const ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h12v5H6zM4 8h16a2 2 0 0 1 2 2v7h-4v5H6v-5H2v-7a2 2 0 0 1 2-2zm4 9v3h8v-3z"/></svg>';
+  const pageOf = (el) => el.closest('.page');
+  const pageName = (pg) => { const t = document.querySelector('.sd .tab[data-tab="' + pg.id + '"]'); return t ? t.textContent.trim() : ''; };
+  const panelName = (pn) => { const h = pn.querySelector(':scope > .ph'); if (!h) return ''; const c = h.cloneNode(true); c.querySelectorAll('.seg,.pprt,button').forEach((x) => x.remove()); const k = h.querySelector('.seg button[aria-pressed="true"]'); return c.textContent.trim() + (k ? ' · عيار ' + k.dataset.k : ''); };
+  const NOPERIOD = ['yoyp', 'debt'];
+  const today = () => { const d = new Date(); return d.getDate() + ' ' + SD.AR[d.getMonth()] + ' ' + d.getFullYear(); };
+  const fileDate = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
+  let hidden = [], oldTitle = document.title;
+  const cleanup = () => { document.documentElement.classList.remove('pr-panel'); hidden.forEach((e) => e.classList.remove('print-hide')); hidden = []; document.title = oldTitle; };
+  window.addEventListener('afterprint', cleanup);
+  const go = (pg, panel) => {
+    cleanup(); oldTitle = document.title;
+    const name = panel ? pageName(pg) + ' — ' + panelName(panel) : pageName(pg);
+    const ph = document.getElementById('printhead');
+    ph.querySelector('[data-ph="t"]').textContent = name;
+    ph.querySelector('[data-ph="p"]').textContent = NOPERIOD.includes(pg.id) ? '' : 'الفترة: ' + SD.plabel();
+    ph.querySelector('[data-ph="d"]').textContent = 'اتطبع: ' + today();
+    if (panel) {
+      document.documentElement.classList.add('pr-panel');
+      let n = panel;
+      while (n && n !== pg) { [...n.parentElement.children].forEach((sib) => { if (sib !== n && !sib.classList.contains('print-hide')) { sib.classList.add('print-hide'); hidden.push(sib); } }); n = n.parentElement; }
+    }
+    document.title = 'مبيعات الإسكندرية - ' + name.replace(/[\\/:*?"<>|]/g, '-') + ' - ' + fileDate();
+    setTimeout(() => window.print(), 50);
+  };
+  const cur = () => document.querySelector('.sd .page:not([hidden])');
+  document.getElementById('print-page').addEventListener('click', () => { const pg = cur(); if (pg) go(pg, null); });
+  document.querySelectorAll('.sd .page .panel > .ph').forEach((h) => {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'pprt'; b.title = 'اطبع الجزء ده لوحده / PDF'; b.setAttribute('aria-label', 'طباعة الجزء ده لوحده'); b.innerHTML = ICON;
+    b.addEventListener('click', (ev) => { ev.stopPropagation(); const pn = h.parentElement; go(pageOf(pn), pn); });
+    const seg = h.querySelector(':scope > .seg, :scope > .more');
+    if (seg) { const w = document.createElement('span'); w.className = 'phr'; h.insertBefore(w, seg); w.append(seg, b); } else h.append(b);
   });
 })();
 </script>
