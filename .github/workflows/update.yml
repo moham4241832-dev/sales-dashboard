@@ -1,6 +1,8 @@
 name: Update dashboard from Excel
 
 on:
+  push:
+    branches: [main]
   schedule:
     - cron: '17 * * * *'
   workflow_dispatch:
@@ -19,19 +21,22 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
+    env:
+      XLSX_URL: ${{ secrets.XLSX_URL }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
+        if: env.XLSX_URL != ''
         with:
           python-version: '3.12'
-      - run: pip install pandas openpyxl
-      - name: Download Excel from OneDrive
-        env:
-          XLSX_URL: ${{ secrets.XLSX_URL }}
-        run: python build_data.py download
-      - name: Rebuild dashboard data
-        run: python build_data.py build
-      - name: Publish if changed
+      - name: Download Excel from OneDrive and rebuild data
+        if: env.XLSX_URL != ''
+        run: |
+          pip install pandas openpyxl
+          python build_data.py download
+          python build_data.py build
+      - name: Save updated data
+        if: env.XLSX_URL != ''
         run: |
           git config user.name "dashboard-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
