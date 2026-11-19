@@ -315,284 +315,398 @@ https://github.com/nodeca/pako/blob/main/LICENSE
   <input type="file" id="sync-file" accept=".xlsx" hidden>
 </div>
 <style>
-.sd{--g21:#C9A227;--g18:#8A7458;--ink:#16130d;direction:rtl;font-family:var(--font-anthropic-sans);color:var(--color-fg);display:flex;flex-direction:column;gap:var(--cds-gap-lg)}
-.sd .hero{background:linear-gradient(135deg,#1b1710 0%,#2a2214 60%,#3a2e15 100%);color:#f5ecd6;border-radius:calc(var(--cds-radius) * 2);padding:var(--cds-pad-xl);display:flex;flex-direction:column;gap:var(--cds-gap-md);border:1px solid #4a3b1a}
-.sd .hero-top{display:flex;flex-wrap:wrap;gap:var(--cds-gap-md);align-items:center;justify-content:space-between}
-.sd .hero h1{font-family:var(--font-anthropic-serif);font-weight:400;font-size:var(--cds-font-size-title);margin:0;color:#f0d98a}
-.sd .hero .kick{font-size:var(--cds-font-size-caption);color:#c9b98f;margin:0 0 4px}
-.sd .hero .lead{margin:0;font-size:var(--cds-font-size-body);line-height:1.8;color:#efe4c8}
-.sd .hero .lead b{color:#f0d98a;font-weight:600}
-.sd .hero .dash-select{background-color:#2f2716;color:#f5ecd6;border-color:#5a4720}
-.sd .tabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--color-border-line)}
-.sd .tab{appearance:none;border:0;background:none;color:var(--color-fg-muted);font:inherit;font-size:var(--cds-font-size-body);padding:10px 14px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
-.sd .tab[aria-selected="true"]{color:var(--color-fg);border-bottom-color:var(--g21);font-weight:var(--cds-font-weight-medium)}
-.sd .page{display:flex;flex-direction:column;gap:var(--cds-gap-lg)}
-.sd .page[hidden]{display:none}
-.sd h2{font-size:var(--cds-font-size-heading);font-weight:var(--cds-font-weight-medium);margin:0 0 2px}
-.sd .sub{color:var(--color-fg-muted);font-size:var(--cds-font-size-caption);margin:0 0 var(--cds-gap-md)}
-.sd .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:var(--cds-gap-md)}
-.sd .card,.sd .panel{background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-lg)}
-.sd .card{border-top:3px solid var(--g21)}
-.sd .card.c18{border-top-color:var(--g18)} .sd .card.cn{border-top-color:var(--color-border-line)} .sd .card.cb{border-top-color:var(--color-bad)}
-.sd .lbl{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
-.sd .big{font-family:var(--font-anthropic-serif);font-weight:400;font-size:34px;line-height:1.2;margin:6px 0;font-variant-numeric:tabular-nums}
-.sd .unit{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);margin-inline-start:4px;font-family:var(--font-anthropic-sans)}
-.sd .meta{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);line-height:1.9}
-.sd .meta b{color:var(--color-fg);font-weight:var(--cds-font-weight-medium);font-variant-numeric:tabular-nums}
-.sd .prog{height:8px;border-radius:4px;background:var(--cds-chart-grid);overflow:hidden;margin:6px 0;position:relative}
-.sd .prog>i{display:block;height:100%;border-radius:4px}
-.sd .prog>u{position:absolute;top:0;height:100%;border-inline-start:2px dashed var(--color-fg-muted);text-decoration:none}
-.sd .good{color:var(--color-ok)!important} .sd .bad{color:var(--color-bad)!important} .sd .warn{color:var(--color-warn)!important}
-.sd .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:var(--cds-gap-md)}
-.sd .chart{position:relative;min-height:240px}
+body{background:#efe2d0 !important}
+.wrap{max-width:none !important;padding:0 !important}
+.sd{--g21:#6b2f0e;--g18:#d08a3c;--brown:#5a2709;--brown2:#7a3a12;--cream:#f6ebdd;--card:#fffaf3;--line:#ead8c2;--ink:#2b1a0e;--muted:#7b6552;
+  --color-fg:#2b1a0e;--color-fg-muted:#7b6552;--color-bg:#fffaf3;--color-panel:#fffaf3;--color-border-line:#ead8c2;--color-ok:#1e8a3c;--color-warn:#d9861a;--color-bad:#c0392b;
+  --cds-chart-grid:#efe1cf;--cds-chart-axis:#cdb79c;--cds-chart-reference:#8c6b4f;--cds-text-secondary:#6f5a48;--cds-surface-popover:#fffaf3;--cds-border:#e2cdb3;--cds-shadow-popover:0 8px 24px rgba(60,30,10,.18);
+  --cds-font-size-caption:12.5px;--cds-font-size-body:14.5px;--cds-font-size-heading:17px;--cds-radius:12px;
+  direction:rtl;font-family:"Segoe UI",Tahoma,system-ui,Arial,sans-serif;color:var(--ink);display:flex;min-height:100vh;background:linear-gradient(180deg,#f3e7d8,#ecdcc7)}
+/* ---------- sidebar ---------- */
+.sd .side{width:230px;flex:0 0 230px;background:linear-gradient(180deg,#4b210a 0%,#5c2a0d 55%,#3b1a07 100%);color:#f8ecdc;display:flex;flex-direction:column;min-height:100vh;overflow:hidden}
+.sd .brand{text-align:center;padding:26px 14px 22px;border-bottom:1px solid rgba(255,255,255,.08)}
+.sd .brand svg{width:78px;height:78px}
+.sd .brand h1{margin:8px 0 0;font-size:21px;font-weight:800;line-height:1.35;color:#fff}
+.sd .nav{display:flex;flex-direction:column;gap:6px;padding:18px 12px}
+.sd .tab{appearance:none;border:0;background:transparent;color:#f8ecdc;font:inherit;font-size:16px;display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:12px;cursor:pointer;text-align:right}
+.sd .tab svg{width:24px;height:24px;flex:0 0 24px;fill:currentColor}
+.sd .tab:hover{background:rgba(255,255,255,.07)}
+.sd .tab[aria-selected="true"]{background:linear-gradient(180deg,#f0c99e,#dca476);color:#3a1a06;font-weight:700;box-shadow:0 4px 12px rgba(0,0,0,.25)}
+.sd .swoosh{margin-top:auto;position:relative;padding:40px 18px 34px;text-align:center}
+.sd .swoosh::before{content:"";position:absolute;inset:-30px -60px auto -40px;height:70px;border-top:4px solid #d9a46a;border-radius:50% 50% 0 0;transform:rotate(-12deg);opacity:.85}
+.sd .tagline{font-family:Georgia,"Times New Roman",serif;font-style:italic;font-size:19px;line-height:1.6;color:#f8ecdc}
+/* ---------- main ---------- */
+.sd .main{flex:1;min-width:0;display:flex;flex-direction:column}
+.sd .topbar{background:linear-gradient(90deg,#5a2709,#7b3a13 55%,#5a2709);color:#fff;display:flex;align-items:center;gap:22px;padding:16px 26px;flex-wrap:wrap}
+.sd .today{display:flex;align-items:center;gap:12px;padding-left:22px;border-left:2px solid rgba(255,255,255,.35)}
+.sd .today svg{width:44px;height:44px;fill:#fff}
+.sd .today small{display:block;font-size:13px;opacity:.9}
+.sd .today b{font-size:19px}
+.sd .ttl{flex:1;text-align:center;min-width:240px}
+.sd .ttl h2{margin:0;font-size:30px;font-weight:800;color:#fff;letter-spacing:.3px}
+.sd .ttl p{margin:2px 0 0;font-family:Georgia,serif;font-style:italic;font-size:17px;color:#f6e5cf}
+.sd .flt{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.sd .flt label{display:flex;flex-direction:column;font-size:11px;color:#f2dcc1;gap:3px}
+.sd .flt select{appearance:none;font:inherit;font-size:14px;color:#fff;background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23fff' stroke-width='2' fill='none'/%3E%3C/svg%3E") no-repeat left 12px center;border:1.5px solid rgba(255,255,255,.75);border-radius:10px;padding:9px 14px 9px 34px;min-width:132px;cursor:pointer}
+.sd .flt select option{color:#2b1a0e;background:#fff}
+.sd .content{padding:20px 22px 30px}
+.sd .page{display:flex;flex-direction:column;gap:18px}
+.sd .page[hidden],.sd [hidden]{display:none !important}
+/* ---------- KPI cards ---------- */
+.sd .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.sd .kpi{background:var(--card);border-radius:16px;box-shadow:0 3px 14px rgba(90,40,10,.10);display:flex;align-items:center;gap:16px;padding:18px 18px;border:1px solid #f1e3d1}
+.sd .ico{width:76px;height:76px;flex:0 0 76px;border-radius:50%;display:grid;place-items:center;background:var(--brown2)}
+.sd .ico svg{width:40px;height:40px;fill:#fff}
+.sd .ico.green{background:#1e8a3c}.sd .ico.orange{background:#f39a1e}.sd .ico.caramel{background:var(--g18)}
+.sd .kpi .l{font-size:16px;font-weight:600;color:var(--ink)}
+.sd .kpi .v{font-size:40px;font-weight:800;line-height:1.1;color:#24150a;font-variant-numeric:tabular-nums;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.sd .kpi .v small{font-size:19px;font-weight:700}
+.sd .kpi .s{font-size:12.5px;color:var(--muted)}
+.sd .good{color:#1e8a3c !important}.sd .bad{color:#c0392b !important}.sd .warn{color:#d9861a !important}
+/* ---------- panels ---------- */
+.sd .row3{display:grid;grid-template-columns:1fr 1.35fr 1.1fr;gap:16px}
+.sd .row2{display:grid;grid-template-columns:1.6fr 1fr;gap:16px}
+.sd .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+@media (max-width:1100px){.sd .row3,.sd .row2{grid-template-columns:1fr}}
+.sd .panel{background:var(--card);border-radius:16px;box-shadow:0 3px 14px rgba(90,40,10,.10);overflow:hidden;border:1px solid #f1e3d1;display:flex;flex-direction:column}
+.sd .ph{margin:0;background:linear-gradient(90deg,#5a2709,#7a3a12);color:#fff;font-size:20px;font-weight:800;padding:11px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.sd .ph a,.sd .ph button.more{appearance:none;border:0;background:none;color:#fff;font:inherit;font-size:14px;font-weight:600;text-decoration:underline;cursor:pointer}
+.sd .seg{display:flex;background:rgba(255,255,255,.15);border-radius:999px;padding:3px}
+.sd .seg button{appearance:none;border:0;background:none;color:#fff;font:inherit;font-size:13px;padding:3px 12px;border-radius:999px;cursor:pointer}
+.sd .seg button[aria-pressed="true"]{background:#f0c99e;color:#3a1a06;font-weight:700}
+.sd .pb{padding:16px 18px;flex:1}
+.sd .sub{color:var(--muted);font-size:12.5px;margin:0 0 10px}
+.sd .note{font-size:12.5px;color:var(--muted);margin:8px 0 0;line-height:1.7}
+.sd h3{font-size:15px;margin:0 0 8px;color:var(--brown)}
+/* charts */
+.sd .chart{position:relative;min-height:230px}
 .sd .chart svg{direction:ltr;display:block}
-.sd .chart text{fill:var(--cds-text-secondary);font-size:var(--cds-font-size-caption);font-family:var(--font-anthropic-sans)}
-.sd .legend{display:flex;gap:var(--cds-gap-md);flex-wrap:wrap;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);margin-bottom:var(--cds-gap-sm)}
-.sd .legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-inline-end:5px;vertical-align:-1px;background:var(--sw)}
+.sd .chart text{fill:#5b4635;font-size:12.5px;font-family:inherit}
+.sd .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin-bottom:8px}
+.sd .legend span::before{content:"";display:inline-block;width:11px;height:11px;border-radius:2px;margin-inline-end:5px;vertical-align:-1px;background:var(--sw)}
 .sd .legend .dash::before{height:0;border-top:2px dashed var(--cds-chart-reference);background:none;vertical-align:3px}
-.sd .tip{position:absolute;pointer-events:none;background:var(--cds-surface-popover);border:1px solid var(--cds-border);box-shadow:var(--cds-shadow-popover);border-radius:var(--cds-radius);padding:6px 10px;font-size:var(--cds-font-size-caption);white-space:nowrap;direction:rtl;z-index:5;line-height:1.7}
-.sd .hbars{display:flex;flex-direction:column;gap:10px;min-height:180px}
-.sd .hrow{display:grid;grid-template-columns:minmax(100px,34%) 1fr auto;gap:var(--cds-gap-sm);align-items:center;font-size:var(--cds-font-size-caption)}
-.sd .hrow .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.sd .htrack{height:12px;background:var(--cds-chart-grid);border-radius:6px;overflow:hidden}
-.sd .htrack>i{display:block;height:100%;border-radius:6px}
-.sd .hval{font-variant-numeric:tabular-nums;min-width:64px;text-align:left}
+.sd .tip{position:absolute;pointer-events:none;background:#fffaf3;border:1px solid #e2cdb3;box-shadow:0 8px 24px rgba(60,30,10,.18);border-radius:10px;padding:6px 10px;font-size:12.5px;white-space:nowrap;direction:rtl;z-index:5;line-height:1.7}
+.sd .hbars{display:flex;flex-direction:column;gap:12px;min-height:150px}
+.sd .hrow{display:grid;grid-template-columns:minmax(90px,30%) 1fr auto;gap:10px;align-items:center;font-size:14px}
+.sd .hrow .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;direction:rtl}
+.sd .htrack{height:20px;background:transparent;border-radius:3px;overflow:hidden;border-right:2px solid #3b2010}
+.sd .htrack>i{display:block;height:100%;border-radius:0 3px 3px 0}
+.sd .hval{font-variant-numeric:tabular-nums;min-width:56px;text-align:left;font-weight:600}
+.sd .meta{font-size:12px;color:var(--muted)}
+/* donut */
+.sd .donut{display:flex;align-items:center;gap:18px;flex-wrap:wrap;justify-content:center;min-height:220px}
+.sd .donut svg{width:200px;height:200px;direction:ltr}
+.sd .dleg{display:flex;flex-direction:column;gap:12px;font-size:14.5px}
+.sd .dleg div{display:flex;gap:8px;align-items:flex-start}
+.sd .dleg i{width:16px;height:16px;border-radius:50%;flex:0 0 16px;margin-top:3px}
+.sd .dleg small{display:block;color:var(--muted);font-size:13px}
+/* tables */
 .sd .tw{overflow-x:auto}
-.sd table{border-collapse:collapse;width:100%;font-size:var(--cds-font-size-caption);font-variant-numeric:tabular-nums}
-.sd th,.sd td{padding:7px 8px;border-bottom:1px solid var(--color-border-line);text-align:right;white-space:nowrap}
-.sd th{color:var(--color-fg-muted);font-weight:var(--cds-font-weight-medium)}
+.sd table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
+.sd th{background:#f6eadb;color:#3a2412;font-weight:700;text-align:right;padding:9px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+.sd td{padding:8px 12px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+.sd tbody tr:nth-child(even) td{background:#fcf5ec}
 .sd td.num,.sd th.num{text-align:left}
-.sd td.name{white-space:normal;min-width:170px}
-.sd .pill{display:inline-block;padding:1px 8px;border-radius:999px;font-size:11px;background:var(--cds-chart-grid)}
-.sd input.srch{border:1px solid var(--color-border-line);background:var(--color-bg);color:var(--color-fg);border-radius:var(--cds-radius);padding:7px 10px;font:inherit;min-width:200px}
-.sd .note{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);margin:var(--cds-gap-sm) 0 0;line-height:1.7}
-.sd .row-top{display:flex;flex-wrap:wrap;gap:var(--cds-gap-md);align-items:flex-end;justify-content:space-between}
-.sd details summary{cursor:pointer;color:var(--color-fg-muted);font-size:var(--cds-font-size-caption)}
-.sd .filters{display:flex;flex-wrap:wrap;gap:var(--cds-gap-sm) var(--cds-gap-md);align-items:center;background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-md) var(--cds-pad-lg);font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
-.sd .filters label{display:flex;gap:6px;align-items:center}
-.sd .flbl{color:var(--color-fg);font-weight:var(--cds-font-weight-medium)}
-.sd .presets{display:flex;flex-wrap:wrap;gap:6px;margin-inline-start:auto}
-.sd .chip{appearance:none;font:inherit;font-size:var(--cds-font-size-caption);border:1px solid var(--color-border-line);background:var(--color-bg);color:var(--color-fg);border-radius:999px;padding:4px 12px;cursor:pointer}
-.sd .chip[aria-pressed="true"]{background:var(--g21);border-color:var(--g21);color:#1b1710;font-weight:var(--cds-font-weight-medium)}
-.sd .fnote{width:100%;margin:0;color:var(--color-fg-muted)}
-@media print{.sd .page[hidden]{display:flex!important;break-before:page}.sd .tabs{display:none}}
+.sd td.name{white-space:normal;min-width:160px}
+.sd .pill{display:inline-block;padding:2px 12px;border-radius:999px;font-size:12.5px;font-weight:700}
+.sd .pill.ok{background:#4cc46a;color:#0f3d1b}.sd .pill.wait{background:#ffd479;color:#5a3a00}.sd .pill.no{background:#f08b7f;color:#4a0d07}
+/* summary */
+.sd .sumrow{display:grid;grid-template-columns:repeat(4,1fr);height:100%}
+.sd .sumrow>div{text-align:center;padding:14px 6px;border-left:1.5px solid #c9b29a;display:flex;flex-direction:column;align-items:center;gap:6px;justify-content:center}
+.sd .sumrow>div:last-child{border-left:0}
+.sd .sumrow svg{width:46px;height:46px;fill:#4a230c}
+.sd .sumrow .n{font-size:30px;font-weight:800;color:#2b1a0e;font-variant-numeric:tabular-nums}
+.sd .sumrow .c{font-size:13.5px;color:#3a2412;line-height:1.4}
+@media (max-width:700px){.sd .sumrow{grid-template-columns:repeat(2,1fr)}}
+.sd input.srch{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:8px 12px;font:inherit;min-width:200px}
+.sd .row-top{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:8px}
+.sd details summary{cursor:pointer;color:var(--muted);font-size:12.5px}
+@media (max-width:900px){.sd{flex-direction:column}.sd .side{width:auto;flex:none;height:auto;min-height:0;position:static}.sd .nav{flex-direction:row;flex-wrap:wrap;padding:8px}.sd .swoosh,.sd .brand svg{display:none}.sd .brand{padding:10px}.sd .tab{padding:8px 12px;font-size:14px}}
+@media print{.sd .page[hidden]{display:flex!important;break-before:page}.sd .side{display:none}}
 </style>
 
 <div class="sd" lang="ar" data-read>
-  <header class="hero" id="top">
-    <div class="hero-top">
-      <div>
-        <p class="kick">داشبورد المبيعات · بالجرام</p>
-        <h1>مبيعات الإسكندرية</h1>
+  <aside class="side">
+    <div class="brand">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><path fill="#fff" d="M8 44h20l-3-10H11zM36 44h20l-3-10H39zM22 30h20l-3-10H25z"/><path fill="#f0c99e" d="M6 46h52v4H6z"/></svg>
+      <h1>مبيعات<br>الإسكندرية</h1>
+    </div>
+    <nav class="nav" role="tablist" aria-label="أقسام الداشبورد">
+      <button class="tab" role="tab" data-tab="overview" aria-selected="true"><svg viewBox="0 0 24 24"><path d="M12 3 2 12h3v8h5v-6h4v6h5v-8h3z"/></svg>الرئيسية</button>
+      <button class="tab" role="tab" data-tab="reports" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M4 20h3V10H4zm6 0h3V4h-3zm6 0h3v-7h-3z"/></svg>التقارير</button>
+      <button class="tab" role="tab" data-tab="clients" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm-7 8c0-3 3-5 7-5s7 2 7 5v1H5zM5 11a3 3 0 1 0-3-3 3 3 0 0 0 3 3zm14 0a3 3 0 1 0-3-3 3 3 0 0 0 3 3z"/></svg>العملاء</button>
+      <button class="tab" role="tab" data-tab="debt" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M3 6h18v12H3zm2 2v8h14V8zm7 1a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>المديونية</button>
+      <button class="tab" role="tab" data-tab="branches" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M3 21V9l9-6 9 6v12h-6v-7H9v7z"/></svg>الفروع</button>
+    </nav>
+    <div class="swoosh"><div class="tagline">دهب بيلمع...<br>وبيع بيكبر!</div></div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar" id="top">
+      <div class="today">
+        <svg viewBox="0 0 24 24"><path d="M7 2h2v2h6V2h2v2h3v18H4V4h3zm-1 7v11h12V9zm2 2h2v2H8zm4 0h2v2h-2zm4 0h2v2h-2zm-8 4h2v2H8zm4 0h2v2h-2z"/></svg>
+        <div><small>آخر يوم مبيعات</small><b data-draw="last-date">—</b></div>
       </div>
-    </div>
-    <p class="lead"><b data-draw="tk-month">—</b>: اتباع <b data-draw="tk-21">—</b> جم <b>عيار 21</b>، و<b data-draw="tk-18">—</b> جم <b>عيار 18</b>. <span data-draw="tk-note">—</span></p>
-  </header>
+      <div class="ttl">
+        <h2>داشبورد مبيعات الإسكندرية</h2>
+        <p>متابعة • تحليل • تخطيط</p>
+      </div>
+      <div class="flt" role="group" aria-label="فلتر الشهور">
+        <label>الفترة<select id="preset" aria-label="فترة جاهزة"><option value="cur">الشهر الحالي</option><option value="last">آخر شهر كامل</option><option value="3">آخر 3 شهور</option><option value="6">آخر 6 شهور</option><option value="all">كل الفترة</option><option value="custom">فترة مخصصة</option></select></label>
+        <label>من<select data-draw="f-from" aria-label="من شهر" data-source="monthly_sales"></select></label>
+        <label>لحد<select data-draw="f-to" aria-label="لحد شهر" data-source="monthly_sales"></select></label>
+      </div>
+    </header>
 
-  <nav class="tabs" role="tablist" aria-label="أقسام الداشبورد">
-    <button class="tab" role="tab" data-tab="overview" aria-selected="true">نظرة عامة</button>
-    <button class="tab" role="tab" data-tab="clients" aria-selected="false">العملاء</button>
-    <button class="tab" role="tab" data-tab="debt" aria-selected="false">المديونية</button>
-    <button class="tab" role="tab" data-tab="branches" aria-selected="false">الفروع</button>
-  </nav>
+    <div class="content">
+      <!-- ================= OVERVIEW ================= -->
+      <section class="page" id="overview">
+        <div class="kpis">
+          <div class="kpi" id="card-21">
+            <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 18h8l-1.5-5h-5zm10 0h8l-1.5-5h-5zM8 11h8l-1.5-5h-5z"/></svg></div>
+            <div><div class="l">مبيعات عيار 21</div><div class="v"><span data-draw="k21">—</span><small data-draw="k21-pctp">—</small></div><div class="s">جم · من هدف <span data-draw="k21-target">—</span></div></div>
+          </div>
+          <div class="kpi" id="card-18">
+            <div class="ico caramel"><svg viewBox="0 0 24 24"><path d="M3 18h8l-1.5-5h-5zm10 0h8l-1.5-5h-5zM8 11h8l-1.5-5h-5z"/></svg></div>
+            <div><div class="l">مبيعات عيار 18</div><div class="v"><span data-draw="k18">—</span><small data-draw="k18-pctp">—</small></div><div class="s">جم · من هدف <span data-draw="k18-target">—</span></div></div>
+          </div>
+          <div class="kpi" id="card-gold">
+            <div class="ico green"><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></div>
+            <div><div class="l">دهب عند العملاء (عيار 21)</div><div class="v"><span data-draw="d-gold" data-source="debt_summary" data-field="gold21" data-row="0">—</span></div><div class="s">جم · عند <span data-draw="d-cnt" data-source="debt_summary" data-field="debtors" data-row="0">—</span> عميل</div></div>
+          </div>
+          <div class="kpi" id="card-over">
+            <div class="ico orange"><svg viewBox="0 0 24 24"><path d="M6 2h12v5l-4 5 4 5v5H6v-5l4-5-4-5zm2 2v2.3L12 11l4-4.7V4zm4 9-4 4.7V20h8v-2.3z"/></svg></div>
+            <div><div class="l">عملاء فوق الحد</div><div class="v"><span data-draw="d-over" data-source="debt_summary" data-field="over" data-row="0">—</span><small class="warn" data-draw="d-share-p">—</small></div><div class="s">عليهم <span data-draw="d-over-g" data-source="debt_summary" data-field="over_gold21" data-row="0">—</span> جم</div></div>
+          </div>
+        </div>
 
-  <div class="filters" id="filters" role="group" aria-label="فلتر الشهور">
-    <span class="flbl">الفترة</span>
-    <label>من <select class="dash-select" data-draw="f-from" aria-label="من شهر" data-source="monthly_sales"></select></label>
-    <label>لحد <select class="dash-select" data-draw="f-to" aria-label="لحد شهر" data-source="monthly_sales"></select></label>
-    <div class="presets">
-      <button class="chip" type="button" data-preset="cur" aria-pressed="false">الشهر الحالي</button>
-      <button class="chip" type="button" data-preset="last" aria-pressed="false">آخر شهر كامل</button>
-      <button class="chip" type="button" data-preset="3" aria-pressed="false">آخر 3 شهور</button>
-      <button class="chip" type="button" data-preset="6" aria-pressed="false">آخر 6 شهور</button>
-      <button class="chip" type="button" data-preset="all" aria-pressed="false">كل الفترة</button>
+        <div class="row3">
+          <section class="panel" id="channels">
+            <h2 class="ph">مين باع؟ <span class="seg" data-seg="ch"><button type="button" data-k="21" aria-pressed="true">21</button><button type="button" data-k="18" aria-pressed="false">18</button></span></h2>
+            <div class="pb">
+              <div class="donut" data-k="21" data-draw="donut-21" data-source="period"></div>
+              <div class="donut" data-k="18" data-draw="donut-18" data-source="period" hidden></div>
+            </div>
+          </section>
+          <section class="panel" id="monthly">
+            <h2 class="ph">المبيعات الشهرية</h2>
+            <div class="pb">
+              <div class="legend"><span style="--sw:var(--g21)">عيار 21</span><span style="--sw:var(--g18)">عيار 18</span><span class="dash">الهدف</span></div>
+              <div class="chart" data-draw="monthly-chart" data-source="monthly_sales"></div>
+            </div>
+          </section>
+          <section class="panel" id="br-nov">
+            <h2 class="ph">الفروع مقابل الهدف <span class="seg" data-seg="br"><button type="button" data-k="21" aria-pressed="true">21</button><button type="button" data-k="18" aria-pressed="false">18</button></span></h2>
+            <div class="pb">
+              <p class="sub">الشهر الحالي · نسبة المحقق من هدف كل فرع</p>
+              <div class="hbars" data-k="21" data-draw="brn-21" data-source="branch_nov"></div>
+              <div class="hbars" data-k="18" data-draw="brn-18" data-source="branch_nov" hidden></div>
+            </div>
+          </section>
+        </div>
+
+        <div class="row2">
+          <section class="panel" id="top-clients">
+            <h2 class="ph">أكبر العملاء <button type="button" class="more" data-goto="clients">عرض الكل ←</button></h2>
+            <div class="pb" style="padding:0">
+              <div class="tw">
+                <table data-source="client_period" data-row-key="client" id="top-table">
+                  <thead><tr><th data-field="client">العميل</th><th>المنطقة</th><th class="num" data-field="period_total">المبيعات (جم)</th><th>آخر شهر شراء</th><th>الحالة</th></tr></thead>
+                  <tbody data-draw="top-clients-body"></tbody>
+                </table>
+              </div>
+              <p class="note" style="padding:0 14px 10px" data-draw="top-clients-note">—</p>
+            </div>
+          </section>
+          <section class="panel" id="summary">
+            <h2 class="ph">ملخص الفترة</h2>
+            <div class="pb" style="padding:6px">
+              <div class="sumrow">
+                <div><svg viewBox="0 0 24 24"><path d="M4 18h3v-6H4zm5 0h3V8H9zm5 0h3v-4h-3zm5 0h2V5h-2zM3 20h18v1H3z"/></svg><div class="n" data-draw="s-proj21">—</div><div class="c">متوقع آخر الشهر<br>عيار 21</div></div>
+                <div><svg viewBox="0 0 24 24"><path d="M4 18h3v-6H4zm5 0h3V8H9zm5 0h3v-4h-3zm5 0h2V5h-2zM3 20h18v1H3z"/></svg><div class="n" data-draw="s-proj18">—</div><div class="c">متوقع آخر الشهر<br>عيار 18</div></div>
+                <div><svg viewBox="0 0 24 24"><path d="M7 2h2v2h6V2h2v2h3v18H4V4h3zm-1 7v11h12V9z"/></svg><div class="n" data-draw="s-avg21">—</div><div class="c">متوسط يوم البيع<br>عيار 21</div></div>
+                <div><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.6 4.3L18.5 21 12 16.5 5.5 21l2.1-7.7L2 9h7z"/></svg><div class="n" data-draw="s-avg18">—</div><div class="c">متوسط يوم البيع<br>عيار 18</div></div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <p class="note" data-draw="tk-line">—</p>
+      </section>
+
+      <!-- ================= REPORTS ================= -->
+      <section class="page" id="reports" hidden>
+        <div class="grid2">
+          <section class="panel" id="rep-21">
+            <h2 class="ph">عيار 21 — تفاصيل الفترة</h2>
+            <div class="pb">
+              <p class="note">المبيعات: <b data-draw="k21">—</b> جم · المحقق: <b data-draw="k21-pct">—</b> من هدف <b data-draw="k21-target">—</b></p>
+              <p class="note">عن الفترة اللي قبلها: <b data-draw="k21-chg">—</b> · متوقع آخر الشهر: <b data-draw="k21-proj">—</b></p>
+              <p class="note">متوسط يوم البيع: <b data-draw="kavg21">—</b> جم في <b data-draw="kdays21">—</b> · أحسن يوم: <b data-draw="kbest21">—</b></p>
+            </div>
+          </section>
+          <section class="panel" id="rep-18">
+            <h2 class="ph">عيار 18 — تفاصيل الفترة</h2>
+            <div class="pb">
+              <p class="note">المبيعات: <b data-draw="k18">—</b> جم · المحقق: <b data-draw="k18-pct">—</b> من هدف <b data-draw="k18-target">—</b></p>
+              <p class="note">عن الفترة اللي قبلها: <b data-draw="k18-chg">—</b> · متوقع آخر الشهر: <b data-draw="k18-proj">—</b></p>
+              <p class="note">متوسط يوم البيع: <b data-draw="kavg18">—</b> جم في <b data-draw="kdays18">—</b> · أحسن يوم: <b data-draw="kbest18">—</b></p>
+            </div>
+          </section>
+        </div>
+        <div class="grid2">
+          <section class="panel" id="cumulative">
+            <h2 class="ph">ماشيين إزاي؟</h2>
+            <div class="pb">
+              <p class="sub">البيع المتراكم يوم بيوم خلال الفترة مقابل الهدف</p>
+              <div class="legend"><span style="--sw:var(--g21)">عيار 21</span><span style="--sw:var(--g18)">عيار 18</span><span class="dash">الهدف</span></div>
+              <div class="chart" data-draw="cum-chart" data-source="daily_sales period"></div>
+            </div>
+          </section>
+          <section class="panel" id="channels-bars">
+            <h2 class="ph">البيع حسب القناة</h2>
+            <div class="pb">
+              <p class="sub">خلال الفترة (جم) · الأرقام بالسالب = مرتجعات</p>
+              <div class="hbars" data-draw="channels"></div>
+            </div>
+          </section>
+        </div>
+        <section class="panel" id="weekday">
+          <h2 class="ph">أنهي أيام الأسبوع بتبيع أكتر؟</h2>
+          <div class="pb">
+            <p class="sub">متوسط البيع في كل يوم لكل عيار لوحده · خلال الفترة المختارة (جم)</p>
+            <div class="grid2">
+              <div><h3>عيار 21</h3><div class="hbars" data-draw="weekday-21" data-source="weekday_avg"></div></div>
+              <div><h3>عيار 18</h3><div class="hbars" data-draw="weekday-18" data-source="weekday_avg"></div></div>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- ================= CLIENTS ================= -->
+      <section class="page" id="clients" hidden>
+        <p class="note" style="color:#b5651d;font-weight:600">تنبيه: شيت SALE نفسه بيسجل لكل عميل رقم واحد في الشهر فيه عيار 21 وعيار 18 مع بعض، والملف مفيهوش تقسيم بالعيار للعملاء. علشان كده أرقام الصفحة دي مش متقسمة بالعيار.</p>
+        <p class="note">بيانات العملاء من شيت SALE وبتغطي من يونيو 2025 لحد فبراير 2026 (بالجرام). <b data-draw="c-period">—</b></p>
+        <div class="kpis">
+          <div class="kpi"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm-7 8c0-3 3-5 7-5s7 2 7 5v1H5z"/></svg></div><div><div class="l">عملاء اشتروا في الفترة</div><div class="v"><span data-draw="c-active" data-source="client_period_summary" data-field="buying" data-row="0">—</span></div><div class="s">من <span data-draw="c-all" data-source="client_summary" data-field="clients" data-row="0">—</span> عميل في الشيت</div></div></div>
+          <div class="kpi"><div class="ico orange"><svg viewBox="0 0 24 24"><path d="M6 2h12v5l-4 5 4 5v5H6v-5l4-5-4-5z"/></svg></div><div><div class="l">عملاء وقفوا شرا</div><div class="v"><span data-draw="c-stopped" data-source="client_summary" data-field="stopped" data-row="0">—</span></div><div class="s">مشتروش في يناير وفبراير 2026</div></div></div>
+          <div class="kpi"><div class="ico green"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.6 4.3L18.5 21 12 16.5 5.5 21l2.1-7.7L2 9h7z"/></svg></div><div><div class="l">حصة أكبر 10 عملاء</div><div class="v"><span data-draw="c-top10" data-source="client_period_summary" data-field="top10_share" data-row="0">—</span></div><div class="s">من مبيعات العملاء في الفترة</div></div></div>
+        </div>
+        <div class="grid2">
+          <section class="panel" id="top10">
+            <h2 class="ph">أكبر 10 عملاء</h2>
+            <div class="pb"><p class="sub">مبيعاتهم في الفترة المختارة (جم)</p><div class="hbars" data-draw="top10-bars" data-source="client_period"></div></div>
+          </section>
+          <section class="panel" id="movers">
+            <h2 class="ph">مين زاد ومين قل؟</h2>
+            <div class="pb" style="padding:0">
+              <p class="sub" style="padding:10px 14px 0">ديسمبر–فبراير مقارنة بسبتمبر–نوفمبر · أكتر 5 زادوا وأكتر 5 قلّوا</p>
+              <div class="tw">
+                <table data-source="client_trend" data-row-key="client" id="movers-table">
+                  <thead><tr><th data-field="client">العميل</th><th class="num" data-field="prev3">قبل</th><th class="num" data-field="last3">بعد</th><th class="num" data-field="diff">الفرق</th></tr></thead>
+                  <tbody data-draw="movers-body"></tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        </div>
+        <section class="panel" id="stopped">
+          <h2 class="ph">عملاء محتاجين متابعة</h2>
+          <div class="pb" style="padding:0">
+            <p class="sub" style="padding:10px 14px 0">كانوا بيشتروا ومشتروش في يناير وفبراير 2026 · مترتبين بحجم شغلهم قبل كده</p>
+            <div class="tw">
+              <table data-source="client_trend" data-row-key="client" id="stopped-table">
+                <thead><tr><th data-field="client">العميل</th><th class="num" data-field="total">إجمالي الشهور</th><th data-field="last_month">آخر شهر اشترى فيه</th></tr></thead>
+                <tbody data-draw="stopped-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+        <section class="panel" id="all-clients">
+          <h2 class="ph">كل العملاء</h2>
+          <div class="pb">
+            <div class="row-top"><p class="sub" style="margin:0">مترتبين بمبيعات الفترة المختارة (جم)</p><input class="srch" type="search" id="client-search" placeholder="دوّر على عميل…" aria-label="بحث عن عميل"></div>
+            <div class="tw">
+              <table data-source="client_sales" data-row-key="client" id="clients-table">
+                <thead><tr>
+                  <th data-field="client">العميل</th><th class="num" data-source="client_period" data-field="period_total">الفترة</th><th class="num" data-field="total">كل الشهور</th>
+                  <th class="num" data-field="2025-06">يونيو 25</th><th class="num" data-field="2025-07">يوليو 25</th><th class="num" data-field="2025-08">أغسطس 25</th><th class="num" data-field="2025-09">سبتمبر 25</th><th class="num" data-field="2025-10">أكتوبر 25</th><th class="num" data-field="2025-11">نوفمبر 25</th><th class="num" data-field="2025-12">ديسمبر 25</th><th class="num" data-field="2026-01">يناير 26</th><th class="num" data-field="2026-02">فبراير 26</th>
+                </tr></thead>
+                <tbody data-draw="clients-body"></tbody>
+              </table>
+            </div>
+            <p class="note" data-draw="clients-count">—</p>
+          </div>
+        </section>
+      </section>
+
+      <!-- ================= DEBT ================= -->
+      <section class="page" id="debt" hidden>
+        <div class="kpis">
+          <div class="kpi"><div class="ico green"><svg viewBox="0 0 24 24"><path d="M3 18h8l-1.5-5h-5zm10 0h8l-1.5-5h-5zM8 11h8l-1.5-5h-5z"/></svg></div><div><div class="l">دهب عند العملاء (عيار 21)</div><div class="v"><span data-draw="d-gold" data-source="debt_summary" data-field="gold21" data-row="0">—</span></div><div class="s">جم · عند <span data-draw="d-cnt" data-source="debt_summary" data-field="debtors" data-row="0">—</span> عميل مدين</div></div></div>
+          <div class="kpi"><div class="ico orange"><svg viewBox="0 0 24 24"><path d="M6 2h12v5l-4 5 4 5v5H6v-5l4-5-4-5z"/></svg></div><div><div class="l">عملاء فوق حد الائتمان</div><div class="v"><span data-draw="d-over" data-source="debt_summary" data-field="over" data-row="0">—</span></div><div class="s">عليهم <span data-draw="d-over-g" data-source="debt_summary" data-field="over_gold21" data-row="0">—</span> جم</div></div></div>
+          <div class="kpi"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10H12z"/></svg></div><div><div class="l">نسبة دهب اللي فوق الحد</div><div class="v"><span data-draw="d-share" data-source="debt_summary" data-field="over_share" data-row="0">—</span></div><div class="s">من إجمالي الدهب المدين</div></div></div>
+        </div>
+        <div class="grid2">
+          <section class="panel" id="area-debt">
+            <h2 class="ph">المديونية حسب المنطقة</h2>
+            <div class="pb"><p class="sub">رصيد عيار 21 المدين (جم) · بين القوسين عدد العملاء</p><div class="hbars" data-draw="area-bars" data-source="area_debt"></div></div>
+          </section>
+          <section class="panel" id="over-limit">
+            <h2 class="ph">العملاء فوق الحد</h2>
+            <div class="pb" style="padding:0">
+              <div class="tw">
+                <table data-source="over_list" data-row-key="n" id="over-table">
+                  <thead><tr><th data-field="client">العميل</th><th data-field="area">المنطقة</th><th class="num" data-field="credit_limit">الحد</th><th class="num" data-field="gold21">الرصيد</th><th class="num" data-field="use">الاستخدام</th></tr></thead>
+                  <tbody data-draw="over-body"></tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        </div>
+        <p class="note">من شيت salse · الرصيد الموجب = العميل عليه دهب.</p>
+      </section>
+
+      <!-- ================= BRANCHES ================= -->
+      <section class="page" id="branches" hidden>
+        <section class="panel" id="br-nov-full">
+          <h2 class="ph">الفروع مقابل الهدف — الشهر الحالي</h2>
+          <div class="pb">
+            <p class="sub">مبيعات الشهر الجاري لحد آخر تحديث مقابل هدف كل فرع · من جدول الأهداف في شيت salsepov</p>
+            <div class="grid2">
+              <div><h3>عيار 21</h3><div class="hbars" data-draw="brn-21" data-source="branch_nov"></div></div>
+              <div><h3>عيار 18</h3><div class="hbars" data-draw="brn-18" data-source="branch_nov"></div></div>
+            </div>
+          </div>
+        </section>
+        <div class="grid2">
+          <section class="panel" id="br21">
+            <h2 class="ph">نسبة البيع من المتاح — عيار 21</h2>
+            <div class="pb"><p class="sub">أغسطس · المباع ÷ (رصيد أول الشهر + الاستلامات)</p><div class="hbars" data-draw="br-21" data-source="branch_aug"></div></div>
+          </section>
+          <section class="panel" id="br18">
+            <h2 class="ph">نسبة البيع من المتاح — عيار 18</h2>
+            <div class="pb"><p class="sub">أغسطس · المباع ÷ (رصيد أول الشهر + الاستلامات)</p><div class="hbars" data-draw="br-18" data-source="branch_aug"></div></div>
+          </section>
+        </div>
+        <section class="panel" id="branch-detail">
+          <h2 class="ph">تفاصيل الفروع — أغسطس</h2>
+          <div class="pb" style="padding:0">
+            <div class="tw">
+              <table data-source="branch_aug" data-row-key="karat,branch" id="branch-table">
+                <thead><tr><th data-field="branch">الفرع</th><th data-field="karat">العيار</th><th class="num" data-field="opening">رصيد أول الشهر</th><th class="num" data-field="received">استلامات</th><th class="num" data-field="sold">المباع</th><th class="num" data-field="sell_through">نسبة البيع</th></tr></thead>
+                <tbody data-draw="branch-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <details id="notes" style="margin-top:16px">
+        <summary>ملاحظات عن الأرقام</summary>
+        <p class="note">كل المبيعات بالجرام، وعيار 21 وعيار 18 دايماً منفصلين. الهدف من شيت salsepov، وشهور مارس (21) وأبريل ومايو ويونيو مالهاش هدف في الملف، وهدف الشهر الحالي من جدول الأهداف اللي على جنب في نفس الشيت. التوقع لآخر الشهر = متوسط البيع في أيام الشغل اللي فاتت × أيام الشغل في الشهر كله (من الاتنين للجمعة). أعمدة شيت SALE: يونيو–ديسمبر 2025 ويناير–فبراير 2026.</p>
+      </details>
     </div>
-    <p class="fnote">الفلتر بيطبق على النظرة العامة وأرقام العملاء. المديونية والفروع أرقام لحظية ملهاش شهور.</p>
   </div>
-
-  <!-- ================= OVERVIEW ================= -->
-  <section class="page" id="overview">
-    <div class="cards">
-      <div class="card" id="card-21">
-        <div class="lbl">عيار 21</div>
-        <div class="big"><span data-draw="k21">—</span><span class="unit">جم</span></div>
-        <div class="prog" data-draw="k21-prog"></div>
-        <div class="meta">المحقق: <b data-draw="k21-pct">—</b> من هدف <b data-draw="k21-target">—</b></div>
-        <div class="meta">عن الفترة اللي قبلها: <b data-draw="k21-chg">—</b></div>
-        <div class="meta">متوقع آخر الشهر: <b data-draw="k21-proj">—</b></div>
-      </div>
-      <div class="card c18" id="card-18">
-        <div class="lbl">عيار 18</div>
-        <div class="big"><span data-draw="k18">—</span><span class="unit">جم</span></div>
-        <div class="prog" data-draw="k18-prog"></div>
-        <div class="meta">المحقق: <b data-draw="k18-pct">—</b> من هدف <b data-draw="k18-target">—</b></div>
-        <div class="meta">عن الفترة اللي قبلها: <b data-draw="k18-chg">—</b></div>
-        <div class="meta">متوقع آخر الشهر: <b data-draw="k18-proj">—</b></div>
-      </div>
-      <div class="card cn" id="card-day">
-        <div class="lbl">متوسط يوم البيع</div>
-        <div class="meta">عيار 21: <b data-draw="kavg21">—</b> جم · في <b data-draw="kdays21">—</b></div>
-        <div class="meta">عيار 18: <b data-draw="kavg18">—</b> جم · في <b data-draw="kdays18">—</b></div>
-        <div class="lbl" style="margin-top:10px">أحسن يوم</div>
-        <div class="meta">عيار 21: <b data-draw="kbest21">—</b></div>
-        <div class="meta">عيار 18: <b data-draw="kbest18">—</b></div>
-      </div>
-    </div>
-
-    <section class="panel" id="monthly">
-      <h2>المبيعات كل شهر مقابل الهدف</h2>
-      <p class="sub">الشهور اللي في الفترة متلونة · اضغط على أي شهر علشان تختاره لوحده · الخط المتقطع = الهدف</p>
-      <div class="legend"><span style="--sw:var(--g21)">عيار 21</span><span style="--sw:var(--g18)">عيار 18</span><span class="dash">الهدف</span></div>
-      <div class="chart" data-draw="monthly-chart" data-source="monthly_sales"></div>
-    </section>
-
-    <div class="grid2">
-      <section class="panel" id="cumulative">
-        <h2>ماشيين إزاي؟</h2>
-        <p class="sub">البيع المتراكم يوم بيوم خلال الفترة مقابل الهدف</p>
-        <div class="legend"><span style="--sw:var(--g21)">عيار 21</span><span style="--sw:var(--g18)">عيار 18</span><span class="dash">الهدف</span></div>
-        <div class="chart" data-draw="cum-chart" data-source="daily_sales monthly_sales"></div>
-      </section>
-      <section class="panel" id="channels">
-        <h2>مين باع؟</h2>
-        <p class="sub">البيع حسب القناة خلال الفترة (جم)</p>
-        <div class="hbars" data-draw="channels"></div>
-        <p class="note">الأرقام بالسالب = مرتجعات أكتر من البيع.</p>
-      </section>
-    </div>
-
-    <section class="panel" id="weekday">
-      <h2>أنهي أيام الأسبوع بتبيع أكتر؟</h2>
-      <p class="sub">متوسط البيع في كل يوم من أيام الأسبوع لكل عيار لوحده · خلال الفترة المختارة (جم)</p>
-      <div class="grid2">
-        <div><h2>عيار 21</h2><div class="hbars" data-draw="weekday-21" data-source="weekday_avg"></div></div>
-        <div><h2>عيار 18</h2><div class="hbars" data-draw="weekday-18" data-source="weekday_avg"></div></div>
-      </div>
-    </section>
-  </section>
-
-  <!-- ================= CLIENTS ================= -->
-  <section class="page" id="clients" hidden>
-    <p class="note" style="color:var(--color-warn)">تنبيه: شيت SALE نفسه بيسجل لكل عميل رقم واحد في الشهر فيه عيار 21 وعيار 18 مع بعض، والملف مفيهوش تقسيم بالعيار للعملاء. علشان كده أرقام التاب ده مش متقسمة بالعيار.</p>
-    <p class="note">بيانات العملاء من شيت SALE وبتغطي من يونيو 2025 لحد فبراير 2026 (بالجرام). <b data-draw="c-period">—</b></p>
-    <div class="cards">
-      <div class="card cn"><div class="lbl">عملاء اشتروا في الفترة</div><div class="big"><span data-draw="c-active" data-source="client_period_summary" data-field="buying" data-row="0">—</span><span class="unit">عميل</span></div><div class="meta">من <b data-draw="c-all" data-source="client_summary" data-field="clients" data-row="0">—</b> عميل في الشيت</div></div>
-      <div class="card cb"><div class="lbl">عملاء وقفوا شرا</div><div class="big"><span data-draw="c-stopped" data-source="client_summary" data-field="stopped" data-row="0">—</span><span class="unit">عميل</span></div><div class="meta">اشتروا قبل كده ومشتروش في يناير وفبراير</div></div>
-      <div class="card"><div class="lbl">حصة أكبر 10 عملاء</div><div class="big"><span data-draw="c-top10" data-source="client_period_summary" data-field="top10_share" data-row="0">—</span></div><div class="meta">من مبيعات العملاء في الفترة</div></div>
-    </div>
-
-    <div class="grid2">
-      <section class="panel" id="top10">
-        <h2>أكبر 10 عملاء</h2>
-        <p class="sub">مبيعاتهم في الفترة المختارة (جم)</p>
-        <div class="hbars" data-draw="top10-bars" data-source="client_period"></div>
-      </section>
-      <section class="panel" id="movers">
-        <h2>مين زاد ومين قل؟</h2>
-        <p class="sub">آخر 3 شهور (ديسمبر–فبراير) مقارنة بالـ 3 اللي قبلهم (سبتمبر–نوفمبر)</p>
-        <div class="tw">
-          <table data-source="client_trend" data-row-key="client" id="movers-table">
-            <thead><tr><th data-field="client">العميل</th><th class="num" data-field="prev3">قبل</th><th class="num" data-field="last3">بعد</th><th class="num" data-field="diff">الفرق</th></tr></thead>
-            <tbody data-draw="movers-body"></tbody>
-          </table>
-        </div>
-        <p class="note">أكتر 5 زادوا وأكتر 5 قلّوا.</p>
-      </section>
-    </div>
-
-    <section class="panel" id="stopped">
-      <h2>عملاء محتاجين متابعة</h2>
-      <p class="sub">كانوا بيشتروا ومشتروش في يناير وفبراير 2026 · مترتبين بحجم شغلهم قبل كده</p>
-      <div class="tw">
-        <table data-source="client_trend" data-row-key="client" id="stopped-table">
-          <thead><tr><th data-field="client">العميل</th><th class="num" data-field="total">إجمالي الفترة</th><th data-field="last_month">آخر شهر اشترى فيه</th></tr></thead>
-          <tbody data-draw="stopped-body"></tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="panel" id="all-clients">
-      <div class="row-top">
-        <div><h2>كل العملاء</h2><p class="sub">مترتبين بمبيعات الفترة المختارة (جم)</p></div>
-        <input class="srch" type="search" id="client-search" placeholder="دوّر على عميل…" aria-label="بحث عن عميل">
-      </div>
-      <div class="tw">
-        <table data-source="client_sales" data-row-key="client" id="clients-table">
-          <thead><tr>
-            <th data-field="client">العميل</th><th class="num" data-source="client_period" data-field="period_total">الفترة</th><th class="num" data-field="total">كل الشهور</th>
-            <th class="num" data-field="2025-06">يونيو 25</th><th class="num" data-field="2025-07">يوليو 25</th><th class="num" data-field="2025-08">أغسطس 25</th><th class="num" data-field="2025-09">سبتمبر 25</th><th class="num" data-field="2025-10">أكتوبر 25</th><th class="num" data-field="2025-11">نوفمبر 25</th><th class="num" data-field="2025-12">ديسمبر 25</th><th class="num" data-field="2026-01">يناير 26</th><th class="num" data-field="2026-02">فبراير 26</th>
-          </tr></thead>
-          <tbody data-draw="clients-body"></tbody>
-        </table>
-      </div>
-      <p class="note" data-draw="clients-count">—</p>
-    </section>
-  </section>
-
-  <!-- ================= DEBT ================= -->
-  <section class="page" id="debt" hidden>
-    <div class="cards">
-      <div class="card"><div class="lbl">إجمالي دهب عند العملاء (عيار 21)</div><div class="big"><span data-draw="d-gold" data-source="debt_summary" data-field="gold21" data-row="0">—</span><span class="unit">جم</span></div><div class="meta">عند <b data-draw="d-cnt" data-source="debt_summary" data-field="debtors" data-row="0">—</b> عميل مدين</div></div>
-      <div class="card cb"><div class="lbl">عملاء فوق حد الائتمان</div><div class="big"><span data-draw="d-over" data-source="debt_summary" data-field="over" data-row="0">—</span><span class="unit">عميل</span></div><div class="meta">عليهم <b data-draw="d-over-g" data-source="debt_summary" data-field="over_gold21" data-row="0">—</b> جم</div></div>
-      <div class="card cn"><div class="lbl">نسبة دهب العملاء اللي فوق الحد</div><div class="big"><span data-draw="d-share" data-source="debt_summary" data-field="over_share" data-row="0">—</span></div><div class="meta">من إجمالي الدهب المدين</div></div>
-    </div>
-    <div class="grid2">
-      <section class="panel" id="area-debt">
-        <h2>المديونية حسب المنطقة</h2>
-        <p class="sub">رصيد عيار 21 المدين (جم) · بين القوسين عدد العملاء</p>
-        <div class="hbars" data-draw="area-bars" data-source="area_debt"></div>
-      </section>
-      <section class="panel" id="over-limit">
-        <h2>العملاء فوق الحد</h2>
-        <p class="sub">مترتبين بنسبة استخدام الحد</p>
-        <div class="tw">
-          <table data-source="over_list" data-row-key="n" id="over-table">
-            <thead><tr><th data-field="client">العميل</th><th data-field="area">المنطقة</th><th class="num" data-field="credit_limit">الحد</th><th class="num" data-field="gold21">الرصيد</th><th class="num" data-field="use">الاستخدام</th></tr></thead>
-            <tbody data-draw="over-body"></tbody>
-          </table>
-        </div>
-      </section>
-    </div>
-    <p class="note">من شيت salse · الرصيد الموجب = العميل عليه دهب.</p>
-  </section>
-
-  <!-- ================= BRANCHES ================= -->
-  <section class="page" id="branches" hidden>
-    <section class="panel" id="br-nov">
-      <h2>الفروع مقابل الهدف — نوفمبر 2026</h2>
-      <p class="sub">مبيعات الشهر الجاري لحد آخر تحديث مقابل هدف كل فرع · من جدول الأهداف في شيت salsepov</p>
-      <div class="grid2">
-        <div><h2>عيار 21</h2><div class="hbars" data-draw="brn-21" data-source="branch_nov"></div></div>
-        <div><h2>عيار 18</h2><div class="hbars" data-draw="brn-18" data-source="branch_nov"></div></div>
-      </div>
-    </section>
-    <h2>نسبة البيع من المتاح — أغسطس</h2>
-    <p class="note">من شيت تحليل الفروع · شهر أغسطس (آخر تحليل في الملف) · نسبة البيع = المباع ÷ (رصيد أول الشهر + الاستلامات).</p>
-    <div class="grid2">
-      <section class="panel" id="br21">
-        <h2>عيار 21</h2><p class="sub">نسبة البيع من المتاح</p>
-        <div class="hbars" data-draw="br-21" data-source="branch_aug"></div>
-      </section>
-      <section class="panel" id="br18">
-        <h2>عيار 18</h2><p class="sub">نسبة البيع من المتاح</p>
-        <div class="hbars" data-draw="br-18" data-source="branch_aug"></div>
-      </section>
-    </div>
-    <section class="panel" id="branch-detail">
-      <h2>التفاصيل</h2>
-      <div class="tw">
-        <table data-source="branch_aug" data-row-key="karat,branch" id="branch-table">
-          <thead><tr><th data-field="branch">الفرع</th><th data-field="karat">العيار</th><th class="num" data-field="opening">رصيد أول الشهر</th><th class="num" data-field="received">استلامات</th><th class="num" data-field="sold">المباع</th><th class="num" data-field="sell_through">نسبة البيع</th></tr></thead>
-          <tbody data-draw="branch-body"></tbody>
-        </table>
-      </div>
-    </section>
-  </section>
-
-  <details id="notes">
-    <summary>ملاحظات عن الأرقام</summary>
-    <p class="note">كل المبيعات بالجرام. الهدف من شيت salsepov، وشهور مارس (21) وأبريل ومايو ويونيو مالهاش هدف في الملف، وهدف نوفمبر من جدول الأهداف اللي على جنب في نفس الشيت. شيت salsepov مطابق لأرقام فرع الإسكندرية في تحليل الفروع. التوقع لآخر الشهر = متوسط البيع في أيام الشغل اللي فاتت × أيام الشغل في الشهر كله (من الاتنين للجمعة). أعمدة شيت SALE (يناير، فبراير، يونيو…ديسمبر) اتطابقت مع أرقام الإسكندرية: يونيو–ديسمبر 2025 ويناير–فبراير 2026.</p>
-  </details>
 </div>
 
 <script>
@@ -789,6 +903,7 @@ dash.calc('over_list', {
     const k = +preset; const f = full.slice(-k); return [f[0], f[f.length - 1]];
   };
   window.SDsetPeriod = (from, to) => { if (from > to) [from, to] = [to, from]; dash.setParams({ from, to }); };
+  window.SDrange = range;
   document.querySelectorAll('.sd .chip[data-preset]').forEach((b) => b.addEventListener('click', () => { const r = range(b.dataset.preset); if (r) window.SDsetPeriod(r[0], r[1]); }));
   dash.onData(() => {
     const p = SD.period();
@@ -884,7 +999,7 @@ dash.draw('monthly-chart', (el) => {
   const grp = svg.append('g').selectAll('g').data(data).join('g').attr('transform', (d) => `translate(${x(d.m)},0)`);
   grp.filter((d) => SD.inP(d.m)).append('rect').attr('x', -3).attr('width', x.bandwidth() + 6).attr('y', mg.t).attr('height', H - mg.b - mg.t).attr('rx', 4).style('fill', 'var(--cds-chart-grid)').style('opacity', 0.6);
   [['a', 'var(--g21)'], ['b', 'var(--g18)']].forEach(([k, c]) => {
-    grp.append('rect').attr('x', xi(k)).attr('width', xi.bandwidth()).attr('y', (d) => y(Math.max(0, d[k]))).attr('height', (d) => Math.abs(y(d[k]) - y(0))).attr('rx', 2).style('fill', c).style('opacity', (d) => (SD.inP(d.m) ? 1 : 0.3));
+    grp.append('rect').attr('x', xi(k)).attr('width', xi.bandwidth()).attr('y', (d) => y(Math.max(0, d[k]))).attr('height', (d) => Math.abs(y(d[k]) - y(0))).attr('rx', 2).style('fill', c).style('opacity', (d) => (SD.inP(d.m) ? 1 : 0.45));
     grp.filter((d) => d['t' + k]).append('line').attr('x1', xi(k) - 2).attr('x2', xi(k) + xi.bandwidth() + 2).attr('y1', (d) => y(d['t' + k])).attr('y2', (d) => y(d['t' + k])).style('stroke', 'var(--cds-chart-reference)').style('stroke-width', 2).style('stroke-dasharray', '3 2');
   });
   const tip = d3.select(el).append('div').attr('class', 'tip').style('display', 'none');
@@ -1049,6 +1164,115 @@ dash.draw('branch-body', (tb) => {
     const p = +r.sell_through; window.sdTd(tr, SD.pct(p), 'num ' + (p >= 0.75 ? 'good' : p >= 0.6 ? 'warn' : 'bad'));
     return tr;
   }));
+});
+</script>
+
+<script>
+// ---------- v2 design: header filter, toggles, new drawings ----------
+(function () {
+  document.querySelectorAll('#preset').forEach((sel) => sel.addEventListener('change', () => {
+    if (sel.value === 'custom') return;
+    const r = window.SDrange && window.SDrange(sel.value); if (r) window.SDsetPeriod(r[0], r[1]);
+  }));
+  dash.onData(() => {
+    const p = SD.period();
+    document.querySelectorAll('#preset').forEach((sel) => {
+      if (document.activeElement === sel) return;
+      const hit = ['cur', 'last', '3', '6', 'all'].find((k) => { const r = window.SDrange && window.SDrange(k); return r && r[0] === p.from && r[1] === p.to; });
+      sel.value = hit || 'custom';
+    });
+  });
+  document.querySelectorAll('.sd .seg').forEach((seg) => seg.querySelectorAll('button').forEach((b) => b.addEventListener('click', () => {
+    seg.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    const panel = seg.closest('.panel');
+    panel.querySelectorAll('.pb [data-k]').forEach((el) => { el.hidden = el.dataset.k !== b.dataset.k; });
+    panel.querySelectorAll('.pb [data-k]:not([hidden])').forEach((el) => dash.draw(el.dataset.draw));
+  })));
+  document.querySelectorAll('.sd [data-goto]').forEach((b) => b.addEventListener('click', () => {
+    document.querySelectorAll('.sd .tab[data-tab="' + b.dataset.goto + '"]').forEach((t) => t.click());
+  }));
+})();
+
+dash.draw('last-date', (el) => {
+  const d = SD.rows('daily_sales'); const x = d.length ? d[d.length - 1].date : null;
+  el.textContent = x ? (+x.slice(8)) + ' ' + SD.AR[+x.slice(5, 7) - 1] + ' ' + x.slice(0, 4) : '—';
+});
+['21', '18'].forEach((k) => dash.draw('k' + k + '-pctp', (el) => {
+  const r = SD.P(); const v = r ? r['pct' + k] : null;
+  SD.tone(el);
+  if (v === null || v === undefined) { SD.unmark(el); el.textContent = ''; return; }
+  SD.mark(el, 'period', 'pct' + k); el.textContent = '(' + SD.pct(v) + ')'; SD.tone(el, v >= 1 ? 'good' : v >= 0.75 ? 'warn' : 'bad');
+}));
+dash.draw('d-share-p', (el) => { const r = SD.rows('debt_summary')[0]; el.textContent = r && r.debtors ? '(' + SD.pct(r.over / r.debtors) + ' من المدينين)' : ''; });
+
+const SD_CH = {
+  '21': [['bag_islam', 'شنطة إسلام منصور', '#3bb54a'], ['bag_abueissa', 'شنطة أبو عيسى', '#2f8be6'], ['branch21', 'بيع الفرع', '#f39a1e']],
+  '18': [['bag_mahmoud', 'شنطة محمود', '#3bb54a'], ['branch18', 'بيع الفرع', '#2f8be6']],
+};
+['21', '18'].forEach((k) => dash.draw('donut-' + k, (el) => {
+  const r = SD.P();
+  if (!r) { el.replaceChildren(document.createTextNode('—')); return; }
+  const tot = r['sales' + k];
+  const items = SD_CH[k].map(([f, name, color]) => ({ f, name, color, v: +r[f] || 0 }));
+  el.replaceChildren();
+  const svg = d3.select(el).append('svg').attr('viewBox', '-100 -100 200 200').attr('role', 'img').attr('aria-label', 'توزيع مبيعات عيار ' + k + ' على القنوات');
+  const pos = items.filter((x) => x.v > 0);
+  const arcs = d3.pie().sort(null).value((x) => x.v)(pos.length ? pos : [{ v: 1, color: '#eadfce' }]);
+  svg.selectAll('path').data(arcs).join('path').attr('d', d3.arc().innerRadius(52).outerRadius(96)).style('fill', (a) => a.data.color).style('stroke', '#fffaf3').style('stroke-width', 2);
+  const t1 = svg.append('text').attr('text-anchor', 'middle').attr('y', 2).style('font-size', '26px').style('font-weight', '800').style('fill', '#2b1a0e').text(SD.f0(tot));
+  t1.attr('data-source', 'period').attr('data-field', 'sales' + k).attr('data-row', '0');
+  svg.append('text').attr('text-anchor', 'middle').attr('y', 26).style('font-size', '15px').style('font-weight', '700').style('fill', '#2b1a0e').text('جم عيار ' + k);
+  const leg = document.createElement('div'); leg.className = 'dleg';
+  items.forEach((x) => {
+    const row = document.createElement('div'); const i = document.createElement('i'); i.style.background = x.color;
+    const t = document.createElement('div'); t.textContent = x.name;
+    const s = document.createElement('small'); const b = document.createElement('span'); b.textContent = SD.f0(x.v); SD.mark(b, 'period', x.f);
+    s.append(b, document.createTextNode(tot > 0 ? ' (' + SD.pct(Math.max(0, x.v) / tot) + ')' : '')); if (x.v < 0) s.classList.add('bad');
+    t.append(s); row.append(i, t); leg.append(row);
+  });
+  el.append(leg);
+}));
+
+dash.draw('top-clients-body', (tb) => {
+  const per = SD.rows('client_period'); const sum = SD.rows('client_period_summary')[0];
+  const sales = SD.rows('client_sales'); const trend = new Map(SD.rows('client_trend').map((r) => [r.client, r]));
+  const bal = new Map(SD.rows('client_balances').map((r) => [r.client, r]));
+  if (!per.length) { tb.replaceChildren(); return; }
+  const useAll = !sum || !sum.months;
+  const rows = useAll ? sales.slice().sort((a, b) => +b.total - +a.total).slice(0, 6).map((r) => ({ client: r.client, v: +r.total }))
+                      : per.filter((r) => r.period_total > 0).slice(0, 6).map((r) => ({ client: r.client, v: r.period_total }));
+  tb.replaceChildren(...rows.map((r) => {
+    const tr = document.createElement('tr'); tr.setAttribute('data-key', SD.enc(r.client));
+    const b = bal.get(r.client); const t = trend.get(r.client);
+    window.sdTd(tr, r.client, 'name'); window.sdTd(tr, b && b.area ? b.area : '—'); window.sdTd(tr, SD.f0(r.v), 'num');
+    window.sdTd(tr, t && t.last_month ? SD.mlabel(t.last_month) : '—');
+    const td = document.createElement('td'); const pill = document.createElement('span');
+    if (b && b.status === 'over limit') { pill.className = 'pill no'; pill.textContent = 'فوق الحد'; }
+    else if (t && t.stopped) { pill.className = 'pill wait'; pill.textContent = 'متوقف'; }
+    else { pill.className = 'pill ok'; pill.textContent = 'نشط'; }
+    td.append(pill); tr.append(td);
+    return tr;
+  }));
+});
+dash.draw('top-clients-note', (el) => {
+  const s = SD.rows('client_period_summary')[0];
+  el.textContent = !s ? '—' : s.months ? 'مبيعات الفترة المختارة من شيت SALE (21 و18 مع بعض زي ما هي في الشيت).' : 'الفترة المختارة بعد آخر شهر في شيت SALE (فبراير 2026)، فمعروض إجمالي كل الشهور المتاحة. الأرقام دي 21 و18 مع بعض زي ما هي في الشيت.';
+});
+
+[['s-proj21', 'proj21'], ['s-proj18', 'proj18'], ['s-avg21', 'avg_day21'], ['s-avg18', 'avg_day18']].forEach(([name, f]) => dash.draw(name, (el) => {
+  const r = SD.P(); const v = r ? r[f] : null;
+  if (v === null || v === undefined) { SD.unmark(el); el.textContent = '—'; return; }
+  SD.mark(el, 'period', f); el.textContent = SD.f0(v);
+}));
+
+dash.draw('tk-line', (el) => {
+  const r = SD.P(); if (!r) { el.textContent = '—'; return; }
+  const parts = [SD.plabel() + ':'];
+  if (r.pct21 !== null) parts.push('عيار 21 حقق ' + SD.pct(r.pct21) + ' من الهدف،');
+  if (r.pct18 !== null) parts.push('وعيار 18 حقق ' + SD.pct(r.pct18) + '.');
+  if (r.proj21 !== null) parts.push('لو فضلنا على نفس المعدل: حوالي ' + SD.f0(r.proj21) + ' جم عيار 21 و' + SD.f0(r.proj18) + ' جم عيار 18 آخر الشهر.');
+  if (r.pct21 === null && r.pct18 === null) parts.push('الفترة دي ملهاش هدف مسجل كامل في الملف.');
+  el.textContent = parts.join(' ');
 });
 </script>
 
