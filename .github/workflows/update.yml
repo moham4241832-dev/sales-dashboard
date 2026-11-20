@@ -1,16 +1,15 @@
 name: Update dashboard from Excel
 
+# The site is published by GitHub Pages directly from the main branch.
+# This workflow only refreshes the data when the XLSX_URL secret (OneDrive link) is set.
+
 on:
-  push:
-    branches: [main]
   schedule:
     - cron: '17 * * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 concurrency:
   group: update-dashboard
@@ -19,12 +18,14 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
     env:
       XLSX_URL: ${{ secrets.XLSX_URL }}
     steps:
+      - name: Skip when no OneDrive link is set
+        if: env.XLSX_URL == ''
+        run: echo "XLSX_URL secret not set - nothing to do"
       - uses: actions/checkout@v4
+        if: env.XLSX_URL != ''
       - uses: actions/setup-python@v5
         if: env.XLSX_URL != ''
         with:
@@ -42,8 +43,3 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
           if git diff --cached --quiet; then echo "no changes"; else git commit -m "Update sales data" && git push; fi
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
-      - uses: actions/deploy-pages@v4
